@@ -1,0 +1,501 @@
+
+{"task_id":0,"instance_id":0,"success":true,"wall_ms":2141,"error":""}
+{"task_id":1,"instance_id":1,"success":false,"wall_ms":2467,"error":"/Pantograph.ext/temp/_lean_15152_1_11705088080791.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":2,"instance_id":0,"success":true,"wall_ms":2409,"error":""}
+{"task_id":3,"instance_id":1,"success":true,"wall_ms":2525,"error":""}
+{"task_id":4,"instance_id":0,"success":true,"wall_ms":2249,"error":""}
+{"task_id":5,"instance_id":1,"success":true,"wall_ms":2479,"error":""}
+{"task_id":6,"instance_id":0,"success":true,"wall_ms":2430,"error":""}
+{"task_id":7,"instance_id":1,"success":true,"wall_ms":2481,"error":""}
+{"task_id":8,"instance_id":0,"success":true,"wall_ms":2194,"error":""}
+{"task_id":9,"instance_id":1,"success":true,"wall_ms":2433,"error":""}
+{"task_id":10,"instance_id":0,"success":true,"wall_ms":2453,"error":""}
+{"task_id":11,"instance_id":1,"success":false,"wall_ms":2346,"error":"/Pantograph.ext/temp/_lean_15152_1_11717475628990.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":12,"instance_id":0,"success":true,"wall_ms":2120,"error":""}
+{"task_id":13,"instance_id":1,"success":true,"wall_ms":2114,"error":""}
+{"task_id":15,"instance_id":1,"success":true,"wall_ms":2379,"error":""}
+{"task_id":16,"instance_id":0,"success":true,"wall_ms":2518,"error":""}
+{"task_id":17,"instance_id":1,"success":true,"wall_ms":2654,"error":""}
+{"task_id":18,"instance_id":0,"success":true,"wall_ms":2646,"error":""}
+{"task_id":14,"instance_id":0,"success":true,"wall_ms":12430,"error":""}
+{"task_id":19,"instance_id":1,"success":true,"wall_ms":2468,"error":""}
+{"task_id":20,"instance_id":0,"success":true,"wall_ms":2422,"error":""}
+{"task_id":21,"instance_id":1,"success":false,"wall_ms":2434,"error":"/Pantograph.ext/temp/_lean_15152_1_11734604276080.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":22,"instance_id":0,"success":true,"wall_ms":2102,"error":""}
+{"task_id":23,"instance_id":1,"success":true,"wall_ms":2298,"error":""}
+{"task_id":25,"instance_id":1,"success":true,"wall_ms":2367,"error":""}
+{"task_id":26,"instance_id":0,"success":true,"wall_ms":2459,"error":""}
+{"task_id":27,"instance_id":1,"success":true,"wall_ms":2456,"error":""}
+{"task_id":28,"instance_id":0,"success":true,"wall_ms":2434,"error":""}
+{"task_id":29,"instance_id":1,"success":true,"wall_ms":2384,"error":""}
+{"task_id":30,"instance_id":0,"success":true,"wall_ms":2479,"error":""}
+{"task_id":31,"instance_id":1,"success":false,"wall_ms":2492,"error":"/Pantograph.ext/temp/_lean_15152_1_11753919338951.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":32,"instance_id":0,"success":true,"wall_ms":2496,"error":""}
+{"task_id":33,"instance_id":1,"success":true,"wall_ms":2225,"error":""}
+{"task_id":34,"instance_id":0,"success":true,"wall_ms":2124,"error":""}
+{"task_id":35,"instance_id":1,"success":true,"wall_ms":2422,"error":""}
+{"task_id":24,"instance_id":0,"success":true,"wall_ms":28092,"error":""}
+{"task_id":37,"instance_id":1,"success":true,"wall_ms":2432,"error":""}
+{"task_id":36,"instance_id":0,"success":true,"wall_ms":3999,"error":""}
+{"task_id":38,"instance_id":0,"success":true,"wall_ms":3833,"error":""}
+{"task_id":40,"instance_id":0,"success":true,"wall_ms":2637,"error":""}
+{"task_id":41,"instance_id":1,"success":false,"wall_ms":2144,"error":"/Pantograph.ext/temp/_lean_15152_1_11775036270634.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":42,"instance_id":0,"success":true,"wall_ms":2438,"error":""}
+{"task_id":43,"instance_id":1,"success":true,"wall_ms":2850,"error":""}
+{"task_id":44,"instance_id":0,"success":true,"wall_ms":2505,"error":""}
+{"task_id":45,"instance_id":1,"success":true,"wall_ms":2486,"error":""}
+{"task_id":46,"instance_id":0,"success":true,"wall_ms":2409,"error":""}
+{"task_id":47,"instance_id":1,"success":true,"wall_ms":2489,"error":""}
+{"task_id":48,"instance_id":0,"success":true,"wall_ms":2241,"error":""}
+{"task_id":49,"instance_id":1,"success":true,"wall_ms":3624,"error":""}
+{"task_id":50,"instance_id":0,"success":true,"wall_ms":2187,"error":""}
+{"task_id":51,"instance_id":1,"success":false,"wall_ms":2408,"error":"/Pantograph.ext/temp/_lean_15152_1_11800414140385.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":39,"instance_id":1,"success":true,"wall_ms":34982,"error":""}
+{"task_id":52,"instance_id":0,"success":true,"wall_ms":2385,"error":""}
+{"task_id":53,"instance_id":1,"success":true,"wall_ms":2466,"error":""}
+{"task_id":54,"instance_id":0,"success":true,"wall_ms":2416,"error":""}
+{"task_id":55,"instance_id":1,"success":true,"wall_ms":2410,"error":""}
+{"task_id":56,"instance_id":0,"success":true,"wall_ms":2436,"error":""}
+{"task_id":57,"instance_id":1,"success":true,"wall_ms":2496,"error":""}
+{"task_id":58,"instance_id":0,"success":true,"wall_ms":2528,"error":""}
+{"task_id":59,"instance_id":1,"success":true,"wall_ms":2474,"error":""}
+{"task_id":60,"instance_id":0,"success":true,"wall_ms":2318,"error":""}
+{"task_id":62,"instance_id":0,"success":true,"wall_ms":2463,"error":""}
+{"task_id":61,"instance_id":1,"success":false,"wall_ms":4198,"error":"/Pantograph.ext/temp/_lean_15152_1_11814510645558.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":63,"instance_id":1,"success":true,"wall_ms":2492,"error":""}
+{"task_id":64,"instance_id":0,"success":true,"wall_ms":2501,"error":""}
+{"task_id":65,"instance_id":1,"success":true,"wall_ms":2387,"error":""}
+{"task_id":67,"instance_id":1,"success":true,"wall_ms":2460,"error":""}
+{"task_id":68,"instance_id":0,"success":true,"wall_ms":2169,"error":""}
+{"task_id":69,"instance_id":1,"success":true,"wall_ms":2408,"error":""}
+{"task_id":70,"instance_id":0,"success":true,"wall_ms":2389,"error":""}
+{"task_id":71,"instance_id":1,"success":false,"wall_ms":2642,"error":"/Pantograph.ext/temp/_lean_15152_1_11831681760431.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":72,"instance_id":0,"success":true,"wall_ms":2374,"error":""}
+{"task_id":66,"instance_id":0,"success":true,"wall_ms":22965,"error":""}
+{"task_id":74,"instance_id":0,"success":true,"wall_ms":2440,"error":""}
+{"task_id":73,"instance_id":1,"success":true,"wall_ms":11488,"error":""}
+{"task_id":75,"instance_id":1,"success":true,"wall_ms":2416,"error":""}
+{"task_id":76,"instance_id":0,"success":true,"wall_ms":2430,"error":""}
+{"task_id":78,"instance_id":0,"success":true,"wall_ms":2542,"error":""}
+{"task_id":79,"instance_id":1,"success":true,"wall_ms":2509,"error":""}
+{"task_id":77,"instance_id":1,"success":true,"wall_ms":8908,"error":""}
+{"task_id":80,"instance_id":0,"success":true,"wall_ms":2439,"error":""}
+{"task_id":81,"instance_id":1,"success":false,"wall_ms":2168,"error":"/Pantograph.ext/temp/_lean_15152_1_11857941994970.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":82,"instance_id":0,"success":true,"wall_ms":2400,"error":""}
+{"task_id":83,"instance_id":1,"success":true,"wall_ms":2193,"error":""}
+{"task_id":84,"instance_id":0,"success":true,"wall_ms":2579,"error":""}
+{"task_id":85,"instance_id":1,"success":true,"wall_ms":2380,"error":""}
+{"task_id":86,"instance_id":0,"success":true,"wall_ms":2396,"error":""}
+{"task_id":87,"instance_id":1,"success":true,"wall_ms":2461,"error":""}
+{"task_id":88,"instance_id":0,"success":true,"wall_ms":2380,"error":""}
+{"task_id":89,"instance_id":1,"success":true,"wall_ms":2253,"error":""}
+{"task_id":90,"instance_id":0,"success":true,"wall_ms":2416,"error":""}
+{"task_id":91,"instance_id":1,"success":false,"wall_ms":2618,"error":"/Pantograph.ext/temp/_lean_15152_1_11869398662581.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":92,"instance_id":0,"success":true,"wall_ms":2446,"error":""}
+{"task_id":93,"instance_id":1,"success":true,"wall_ms":2479,"error":""}
+{"task_id":94,"instance_id":0,"success":true,"wall_ms":2431,"error":""}
+{"task_id":95,"instance_id":1,"success":true,"wall_ms":2436,"error":""}
+{"task_id":96,"instance_id":0,"success":true,"wall_ms":2155,"error":""}
+{"task_id":97,"instance_id":1,"success":true,"wall_ms":2388,"error":""}
+{"task_id":98,"instance_id":0,"success":true,"wall_ms":2404,"error":""}
+{"task_id":100,"instance_id":0,"success":true,"wall_ms":2396,"error":""}
+{"task_id":99,"instance_id":1,"success":true,"wall_ms":2799,"error":""}
+{"task_id":102,"instance_id":0,"success":true,"wall_ms":2748,"error":""}
+{"task_id":103,"instance_id":1,"success":true,"wall_ms":2487,"error":""}
+{"task_id":104,"instance_id":0,"success":true,"wall_ms":7750,"error":""}
+{"task_id":105,"instance_id":1,"success":true,"wall_ms":2404,"error":""}
+{"task_id":106,"instance_id":0,"success":true,"wall_ms":2342,"error":""}
+{"task_id":107,"instance_id":1,"success":true,"wall_ms":3562,"error":""}
+{"task_id":108,"instance_id":0,"success":true,"wall_ms":2215,"error":""}
+{"task_id":101,"instance_id":1,"success":false,"wall_ms":24075,"error":"/Pantograph.ext/temp/_lean_15152_1_11882117914092.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":109,"instance_id":1,"success":true,"wall_ms":2473,"error":""}
+{"task_id":110,"instance_id":0,"success":true,"wall_ms":2458,"error":""}
+{"task_id":111,"instance_id":1,"success":false,"wall_ms":2511,"error":"/Pantograph.ext/temp/_lean_15152_1_11908106775831.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":112,"instance_id":0,"success":true,"wall_ms":2511,"error":""}
+{"task_id":113,"instance_id":1,"success":true,"wall_ms":2499,"error":""}
+{"task_id":114,"instance_id":0,"success":true,"wall_ms":5099,"error":""}
+{"task_id":116,"instance_id":0,"success":true,"wall_ms":2405,"error":""}
+{"task_id":117,"instance_id":1,"success":true,"wall_ms":2175,"error":""}
+{"task_id":118,"instance_id":0,"success":true,"wall_ms":2432,"error":""}
+{"task_id":119,"instance_id":1,"success":true,"wall_ms":2674,"error":""}
+{"task_id":120,"instance_id":0,"success":true,"wall_ms":2394,"error":""}
+{"task_id":121,"instance_id":1,"success":false,"wall_ms":2953,"error":"/Pantograph.ext/temp/_lean_15152_1_11928346118712.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":115,"instance_id":1,"success":true,"wall_ms":21288,"error":""}
+{"task_id":123,"instance_id":1,"success":true,"wall_ms":2465,"error":""}
+{"task_id":124,"instance_id":0,"success":true,"wall_ms":2423,"error":""}
+{"task_id":122,"instance_id":0,"success":true,"wall_ms":8259,"error":""}
+{"task_id":126,"instance_id":0,"success":true,"wall_ms":2480,"error":""}
+{"task_id":125,"instance_id":1,"success":true,"wall_ms":3290,"error":""}
+{"task_id":127,"instance_id":1,"success":true,"wall_ms":2223,"error":""}
+{"task_id":128,"instance_id":0,"success":true,"wall_ms":2398,"error":""}
+{"task_id":129,"instance_id":1,"success":true,"wall_ms":2393,"error":""}
+{"task_id":130,"instance_id":0,"success":true,"wall_ms":3503,"error":""}
+{"task_id":131,"instance_id":1,"success":false,"wall_ms":2387,"error":"/Pantograph.ext/temp/_lean_15152_1_11946656904249.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":132,"instance_id":0,"success":true,"wall_ms":2472,"error":""}
+{"task_id":134,"instance_id":0,"success":true,"wall_ms":2416,"error":""}
+{"task_id":135,"instance_id":1,"success":true,"wall_ms":2383,"error":""}
+{"task_id":136,"instance_id":0,"success":true,"wall_ms":2411,"error":""}
+{"task_id":137,"instance_id":1,"success":true,"wall_ms":2409,"error":""}
+{"task_id":138,"instance_id":0,"success":true,"wall_ms":2422,"error":""}
+{"task_id":139,"instance_id":1,"success":true,"wall_ms":2165,"error":""}
+{"task_id":140,"instance_id":0,"success":true,"wall_ms":2168,"error":""}
+{"task_id":141,"instance_id":1,"success":false,"wall_ms":2464,"error":"/Pantograph.ext/temp/_lean_15152_1_11967338987832.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":142,"instance_id":0,"success":true,"wall_ms":2386,"error":""}
+{"task_id":143,"instance_id":1,"success":true,"wall_ms":2454,"error":""}
+{"task_id":133,"instance_id":1,"success":true,"wall_ms":31404,"error":""}
+{"task_id":145,"instance_id":1,"success":true,"wall_ms":3043,"error":""}
+{"task_id":146,"instance_id":0,"success":true,"wall_ms":2134,"error":""}
+{"task_id":147,"instance_id":1,"success":true,"wall_ms":6559,"error":""}
+{"task_id":148,"instance_id":0,"success":true,"wall_ms":2167,"error":""}
+{"task_id":149,"instance_id":1,"success":true,"wall_ms":2470,"error":""}
+{"task_id":150,"instance_id":0,"success":true,"wall_ms":2418,"error":""}
+{"task_id":151,"instance_id":1,"success":false,"wall_ms":4360,"error":"/Pantograph.ext/temp/_lean_15152_1_11999243109128.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":152,"instance_id":0,"success":true,"wall_ms":8746,"error":""}
+{"task_id":153,"instance_id":1,"success":true,"wall_ms":2540,"error":""}
+{"task_id":154,"instance_id":0,"success":true,"wall_ms":2433,"error":""}
+{"task_id":144,"instance_id":0,"success":true,"wall_ms":44607,"error":""}
+{"task_id":155,"instance_id":1,"success":true,"wall_ms":2172,"error":""}
+{"task_id":156,"instance_id":0,"success":true,"wall_ms":2521,"error":""}
+{"task_id":157,"instance_id":1,"success":true,"wall_ms":2398,"error":""}
+{"task_id":158,"instance_id":0,"success":true,"wall_ms":2505,"error":""}
+{"task_id":159,"instance_id":1,"success":true,"wall_ms":2423,"error":""}
+{"task_id":160,"instance_id":0,"success":true,"wall_ms":2169,"error":""}
+{"task_id":161,"instance_id":1,"success":false,"wall_ms":2432,"error":"/Pantograph.ext/temp/_lean_15152_1_12024317665238.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":162,"instance_id":0,"success":true,"wall_ms":2574,"error":""}
+{"task_id":163,"instance_id":1,"success":true,"wall_ms":2501,"error":""}
+{"task_id":164,"instance_id":0,"success":true,"wall_ms":2423,"error":""}
+{"task_id":165,"instance_id":1,"success":true,"wall_ms":2409,"error":""}
+{"task_id":166,"instance_id":0,"success":true,"wall_ms":2420,"error":""}
+{"task_id":167,"instance_id":1,"success":true,"wall_ms":8974,"error":""}
+{"task_id":169,"instance_id":1,"success":true,"wall_ms":2110,"error":""}
+{"task_id":170,"instance_id":0,"success":true,"wall_ms":2478,"error":""}
+{"task_id":168,"instance_id":0,"success":true,"wall_ms":13545,"error":""}
+{"task_id":172,"instance_id":0,"success":true,"wall_ms":2446,"error":""}
+{"task_id":173,"instance_id":1,"success":true,"wall_ms":2307,"error":""}
+{"task_id":174,"instance_id":0,"success":true,"wall_ms":2474,"error":""}
+{"task_id":171,"instance_id":1,"success":false,"wall_ms":27999,"error":"/Pantograph.ext/temp/_lean_15152_1_12045223511681.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":176,"instance_id":0,"success":true,"wall_ms":2437,"error":""}
+{"task_id":177,"instance_id":1,"success":true,"wall_ms":2439,"error":""}
+{"task_id":178,"instance_id":0,"success":true,"wall_ms":2816,"error":""}
+{"task_id":179,"instance_id":1,"success":true,"wall_ms":2422,"error":""}
+{"task_id":180,"instance_id":0,"success":true,"wall_ms":2392,"error":""}
+{"task_id":181,"instance_id":1,"success":false,"wall_ms":2335,"error":"/Pantograph.ext/temp/_lean_15152_1_12085731127193.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":182,"instance_id":0,"success":true,"wall_ms":2500,"error":""}
+{"task_id":183,"instance_id":1,"success":true,"wall_ms":2541,"error":""}
+{"task_id":184,"instance_id":0,"success":true,"wall_ms":3073,"error":""}
+{"task_id":185,"instance_id":1,"success":true,"wall_ms":2399,"error":""}
+{"task_id":186,"instance_id":0,"success":true,"wall_ms":2194,"error":""}
+{"task_id":175,"instance_id":1,"success":true,"wall_ms":47527,"error":""}
+{"task_id":187,"instance_id":1,"success":true,"wall_ms":2542,"error":""}
+{"task_id":188,"instance_id":0,"success":true,"wall_ms":2512,"error":""}
+{"task_id":189,"instance_id":1,"success":true,"wall_ms":2419,"error":""}
+{"task_id":190,"instance_id":0,"success":true,"wall_ms":2465,"error":""}
+{"task_id":191,"instance_id":1,"success":false,"wall_ms":2407,"error":"/Pantograph.ext/temp/_lean_15152_1_12105738628162.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":192,"instance_id":0,"success":true,"wall_ms":2362,"error":""}
+{"task_id":193,"instance_id":1,"success":true,"wall_ms":2175,"error":""}
+{"task_id":194,"instance_id":0,"success":true,"wall_ms":2487,"error":""}
+{"task_id":195,"instance_id":1,"success":true,"wall_ms":2777,"error":""}
+{"task_id":196,"instance_id":0,"success":true,"wall_ms":2794,"error":""}
+{"task_id":197,"instance_id":1,"success":true,"wall_ms":2569,"error":""}
+{"task_id":198,"instance_id":0,"success":true,"wall_ms":2416,"error":""}
+{"task_id":199,"instance_id":1,"success":true,"wall_ms":2441,"error":""}
+{"task_id":201,"instance_id":1,"success":false,"wall_ms":2426,"error":"/Pantograph.ext/temp/_lean_15152_1_12118110107268.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":202,"instance_id":0,"success":true,"wall_ms":2475,"error":""}
+{"task_id":200,"instance_id":0,"success":true,"wall_ms":6707,"error":""}
+{"task_id":203,"instance_id":1,"success":true,"wall_ms":2173,"error":""}
+{"task_id":204,"instance_id":0,"success":true,"wall_ms":2486,"error":""}
+{"task_id":205,"instance_id":1,"success":true,"wall_ms":2200,"error":""}
+{"task_id":206,"instance_id":0,"success":true,"wall_ms":2148,"error":""}
+{"task_id":207,"instance_id":1,"success":true,"wall_ms":2197,"error":""}
+{"task_id":208,"instance_id":0,"success":true,"wall_ms":2512,"error":""}
+{"task_id":209,"instance_id":1,"success":true,"wall_ms":2374,"error":""}
+{"task_id":211,"instance_id":1,"success":false,"wall_ms":2467,"error":"/Pantograph.ext/temp/_lean_15152_1_12131957306447.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":212,"instance_id":0,"success":true,"wall_ms":2542,"error":""}
+{"task_id":213,"instance_id":1,"success":true,"wall_ms":2480,"error":""}
+{"task_id":210,"instance_id":0,"success":true,"wall_ms":9697,"error":""}
+{"task_id":214,"instance_id":0,"success":true,"wall_ms":2431,"error":""}
+{"task_id":215,"instance_id":1,"success":true,"wall_ms":2428,"error":""}
+{"task_id":216,"instance_id":0,"success":true,"wall_ms":2518,"error":""}
+{"task_id":217,"instance_id":1,"success":true,"wall_ms":2505,"error":""}
+{"task_id":218,"instance_id":0,"success":true,"wall_ms":2187,"error":""}
+{"task_id":219,"instance_id":1,"success":true,"wall_ms":2105,"error":""}
+{"task_id":220,"instance_id":0,"success":true,"wall_ms":2434,"error":""}
+{"task_id":221,"instance_id":1,"success":false,"wall_ms":2406,"error":"/Pantograph.ext/temp/_lean_15152_1_12147797636866.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":222,"instance_id":0,"success":true,"wall_ms":2485,"error":""}
+{"task_id":223,"instance_id":1,"success":true,"wall_ms":2429,"error":""}
+{"task_id":224,"instance_id":0,"success":true,"wall_ms":2116,"error":""}
+{"task_id":225,"instance_id":1,"success":true,"wall_ms":2422,"error":""}
+{"task_id":226,"instance_id":0,"success":true,"wall_ms":2438,"error":""}
+{"task_id":227,"instance_id":1,"success":true,"wall_ms":2505,"error":""}
+{"task_id":228,"instance_id":0,"success":true,"wall_ms":2456,"error":""}
+{"task_id":229,"instance_id":1,"success":true,"wall_ms":2496,"error":""}
+{"task_id":230,"instance_id":0,"success":true,"wall_ms":2465,"error":""}
+{"task_id":231,"instance_id":1,"success":false,"wall_ms":2707,"error":"/Pantograph.ext/temp/_lean_15152_1_12160058452544.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":232,"instance_id":0,"success":true,"wall_ms":2433,"error":""}
+{"task_id":233,"instance_id":1,"success":true,"wall_ms":2451,"error":""}
+{"task_id":234,"instance_id":0,"success":true,"wall_ms":2203,"error":""}
+{"task_id":235,"instance_id":1,"success":true,"wall_ms":2442,"error":""}
+{"task_id":236,"instance_id":0,"success":true,"wall_ms":2182,"error":""}
+{"task_id":238,"instance_id":0,"success":true,"wall_ms":2111,"error":""}
+{"task_id":239,"instance_id":1,"success":true,"wall_ms":2213,"error":""}
+{"task_id":240,"instance_id":0,"success":true,"wall_ms":2247,"error":""}
+{"task_id":241,"instance_id":1,"success":false,"wall_ms":2425,"error":"/Pantograph.ext/temp/_lean_15152_1_12174373878788.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":242,"instance_id":0,"success":true,"wall_ms":2416,"error":""}
+{"task_id":243,"instance_id":1,"success":true,"wall_ms":2488,"error":""}
+{"task_id":244,"instance_id":0,"success":true,"wall_ms":2458,"error":""}
+{"task_id":245,"instance_id":1,"success":true,"wall_ms":2498,"error":""}
+{"task_id":246,"instance_id":0,"success":true,"wall_ms":2447,"error":""}
+{"task_id":247,"instance_id":1,"success":true,"wall_ms":2451,"error":""}
+{"task_id":248,"instance_id":0,"success":true,"wall_ms":2119,"error":""}
+{"task_id":249,"instance_id":1,"success":true,"wall_ms":2381,"error":""}
+{"task_id":250,"instance_id":0,"success":true,"wall_ms":3017,"error":""}
+{"task_id":251,"instance_id":1,"success":false,"wall_ms":2394,"error":"/Pantograph.ext/temp/_lean_15152_1_12199078316546.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":252,"instance_id":0,"success":true,"wall_ms":2365,"error":""}
+{"task_id":237,"instance_id":1,"success":true,"wall_ms":37846,"error":""}
+{"task_id":253,"instance_id":1,"success":true,"wall_ms":2655,"error":""}
+{"task_id":254,"instance_id":0,"success":true,"wall_ms":2349,"error":""}
+{"task_id":255,"instance_id":1,"success":true,"wall_ms":2481,"error":""}
+{"task_id":256,"instance_id":0,"success":true,"wall_ms":2400,"error":""}
+{"task_id":258,"instance_id":0,"success":true,"wall_ms":6193,"error":""}
+{"task_id":259,"instance_id":1,"success":true,"wall_ms":2451,"error":""}
+{"task_id":260,"instance_id":0,"success":true,"wall_ms":2374,"error":""}
+{"task_id":261,"instance_id":1,"success":false,"wall_ms":2354,"error":"/Pantograph.ext/temp/_lean_15152_1_12221278084324.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":262,"instance_id":0,"success":true,"wall_ms":2427,"error":""}
+{"task_id":263,"instance_id":1,"success":true,"wall_ms":2470,"error":""}
+{"task_id":264,"instance_id":0,"success":true,"wall_ms":2442,"error":""}
+{"task_id":265,"instance_id":1,"success":true,"wall_ms":2416,"error":""}
+{"task_id":266,"instance_id":0,"success":true,"wall_ms":2465,"error":""}
+{"task_id":267,"instance_id":1,"success":true,"wall_ms":2377,"error":""}
+{"task_id":268,"instance_id":0,"success":true,"wall_ms":2386,"error":""}
+{"task_id":257,"instance_id":1,"success":true,"wall_ms":32717,"error":""}
+{"task_id":269,"instance_id":1,"success":true,"wall_ms":2450,"error":""}
+{"task_id":270,"instance_id":0,"success":true,"wall_ms":2247,"error":""}
+{"task_id":271,"instance_id":1,"success":false,"wall_ms":2528,"error":"/Pantograph.ext/temp/_lean_15152_1_12243070726972.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":273,"instance_id":1,"success":true,"wall_ms":2395,"error":""}
+{"task_id":274,"instance_id":0,"success":true,"wall_ms":2457,"error":""}
+{"task_id":275,"instance_id":1,"success":true,"wall_ms":2521,"error":""}
+{"task_id":276,"instance_id":0,"success":true,"wall_ms":2366,"error":""}
+{"task_id":277,"instance_id":1,"success":true,"wall_ms":3287,"error":""}
+{"task_id":278,"instance_id":0,"success":true,"wall_ms":2417,"error":""}
+{"task_id":279,"instance_id":1,"success":true,"wall_ms":2436,"error":""}
+{"task_id":272,"instance_id":0,"success":true,"wall_ms":33178,"error":""}
+{"task_id":281,"instance_id":1,"success":false,"wall_ms":2171,"error":"/Pantograph.ext/temp/_lean_15152_1_12277118450646.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":282,"instance_id":0,"success":true,"wall_ms":2511,"error":""}
+{"task_id":283,"instance_id":1,"success":true,"wall_ms":2517,"error":""}
+{"task_id":284,"instance_id":0,"success":true,"wall_ms":3007,"error":""}
+{"task_id":285,"instance_id":1,"success":true,"wall_ms":3268,"error":""}
+{"task_id":286,"instance_id":0,"success":true,"wall_ms":2181,"error":""}
+{"task_id":287,"instance_id":1,"success":true,"wall_ms":2454,"error":""}
+{"task_id":288,"instance_id":0,"success":true,"wall_ms":2201,"error":""}
+{"task_id":289,"instance_id":1,"success":true,"wall_ms":2941,"error":""}
+{"task_id":280,"instance_id":0,"success":true,"wall_ms":38264,"error":""}
+{"task_id":290,"instance_id":0,"success":true,"wall_ms":2444,"error":""}
+{"task_id":291,"instance_id":1,"success":false,"wall_ms":2165,"error":"/Pantograph.ext/temp/_lean_15152_1_12301746783817.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":293,"instance_id":1,"success":true,"wall_ms":2499,"error":""}
+{"task_id":294,"instance_id":0,"success":true,"wall_ms":2631,"error":""}
+{"task_id":295,"instance_id":1,"success":true,"wall_ms":2214,"error":""}
+{"task_id":296,"instance_id":0,"success":true,"wall_ms":2414,"error":""}
+{"task_id":297,"instance_id":1,"success":true,"wall_ms":2467,"error":""}
+{"task_id":298,"instance_id":0,"success":true,"wall_ms":2425,"error":""}
+{"task_id":299,"instance_id":1,"success":true,"wall_ms":2097,"error":""}
+{"task_id":292,"instance_id":0,"success":true,"wall_ms":17975,"error":""}
+{"task_id":300,"instance_id":0,"success":true,"wall_ms":2443,"error":""}
+{"task_id":301,"instance_id":1,"success":false,"wall_ms":2358,"error":"/Pantograph.ext/temp/_lean_15152_1_12320795320327.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":303,"instance_id":1,"success":true,"wall_ms":2209,"error":""}
+{"task_id":302,"instance_id":0,"success":true,"wall_ms":3164,"error":""}
+{"task_id":305,"instance_id":1,"success":true,"wall_ms":2467,"error":""}
+{"task_id":306,"instance_id":0,"success":true,"wall_ms":2179,"error":""}
+{"task_id":307,"instance_id":1,"success":true,"wall_ms":20226,"error":""}
+{"task_id":308,"instance_id":0,"success":true,"wall_ms":2428,"error":""}
+{"task_id":309,"instance_id":1,"success":true,"wall_ms":2438,"error":""}
+{"task_id":310,"instance_id":0,"success":true,"wall_ms":2436,"error":""}
+{"task_id":311,"instance_id":1,"success":false,"wall_ms":2406,"error":"/Pantograph.ext/temp/_lean_15152_1_12358446925193.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":312,"instance_id":0,"success":true,"wall_ms":4371,"error":""}
+{"task_id":313,"instance_id":1,"success":true,"wall_ms":2486,"error":""}
+{"task_id":314,"instance_id":0,"success":true,"wall_ms":2453,"error":""}
+{"task_id":304,"instance_id":0,"success":true,"wall_ms":46771,"error":""}
+{"task_id":315,"instance_id":1,"success":true,"wall_ms":2415,"error":""}
+{"task_id":316,"instance_id":0,"success":true,"wall_ms":2613,"error":""}
+{"task_id":317,"instance_id":1,"success":true,"wall_ms":2168,"error":""}
+{"task_id":319,"instance_id":1,"success":true,"wall_ms":2635,"error":""}
+{"task_id":318,"instance_id":0,"success":true,"wall_ms":2693,"error":""}
+{"task_id":320,"instance_id":0,"success":true,"wall_ms":2356,"error":""}
+{"task_id":321,"instance_id":1,"success":false,"wall_ms":2499,"error":"/Pantograph.ext/temp/_lean_15152_1_12377441945724.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":322,"instance_id":0,"success":true,"wall_ms":2473,"error":""}
+{"task_id":323,"instance_id":1,"success":true,"wall_ms":2428,"error":""}
+{"task_id":325,"instance_id":1,"success":true,"wall_ms":2266,"error":""}
+{"task_id":324,"instance_id":0,"success":true,"wall_ms":2448,"error":""}
+{"task_id":326,"instance_id":0,"success":true,"wall_ms":2407,"error":""}
+{"task_id":327,"instance_id":1,"success":true,"wall_ms":2509,"error":""}
+{"task_id":328,"instance_id":0,"success":true,"wall_ms":2417,"error":""}
+{"task_id":329,"instance_id":1,"success":true,"wall_ms":2425,"error":""}
+{"task_id":330,"instance_id":0,"success":true,"wall_ms":2122,"error":""}
+{"task_id":331,"instance_id":1,"success":false,"wall_ms":2426,"error":"/Pantograph.ext/temp/_lean_15152_1_12389597786204.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":332,"instance_id":0,"success":true,"wall_ms":2552,"error":""}
+{"task_id":333,"instance_id":1,"success":true,"wall_ms":2431,"error":""}
+{"task_id":334,"instance_id":0,"success":true,"wall_ms":2476,"error":""}
+{"task_id":336,"instance_id":0,"success":true,"wall_ms":2436,"error":""}
+{"task_id":337,"instance_id":1,"success":true,"wall_ms":2433,"error":""}
+{"task_id":338,"instance_id":0,"success":true,"wall_ms":2395,"error":""}
+{"task_id":339,"instance_id":1,"success":true,"wall_ms":2462,"error":""}
+{"task_id":340,"instance_id":0,"success":true,"wall_ms":2142,"error":""}
+{"task_id":335,"instance_id":1,"success":true,"wall_ms":15052,"error":""}
+{"task_id":341,"instance_id":1,"success":false,"wall_ms":2177,"error":"/Pantograph.ext/temp/_lean_15152_1_12408485033640.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":342,"instance_id":0,"success":true,"wall_ms":2433,"error":""}
+{"task_id":343,"instance_id":1,"success":true,"wall_ms":2216,"error":""}
+{"task_id":344,"instance_id":0,"success":true,"wall_ms":2489,"error":""}
+{"task_id":345,"instance_id":1,"success":true,"wall_ms":2465,"error":""}
+{"task_id":346,"instance_id":0,"success":true,"wall_ms":2493,"error":""}
+{"task_id":347,"instance_id":1,"success":true,"wall_ms":2348,"error":""}
+{"task_id":348,"instance_id":0,"success":true,"wall_ms":2446,"error":""}
+{"task_id":350,"instance_id":0,"success":true,"wall_ms":2247,"error":""}
+{"task_id":351,"instance_id":1,"success":false,"wall_ms":2430,"error":"/Pantograph.ext/temp/_lean_15152_1_12421618470148.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":349,"instance_id":1,"success":true,"wall_ms":8460,"error":""}
+{"task_id":352,"instance_id":0,"success":true,"wall_ms":2378,"error":""}
+{"task_id":353,"instance_id":1,"success":true,"wall_ms":2414,"error":""}
+{"task_id":354,"instance_id":0,"success":true,"wall_ms":2485,"error":""}
+{"task_id":355,"instance_id":1,"success":true,"wall_ms":2498,"error":""}
+{"task_id":356,"instance_id":0,"success":true,"wall_ms":2496,"error":""}
+{"task_id":357,"instance_id":1,"success":true,"wall_ms":2487,"error":""}
+{"task_id":358,"instance_id":0,"success":true,"wall_ms":2491,"error":""}
+{"task_id":359,"instance_id":1,"success":true,"wall_ms":2484,"error":""}
+{"task_id":360,"instance_id":0,"success":true,"wall_ms":2508,"error":""}
+{"task_id":361,"instance_id":1,"success":false,"wall_ms":2439,"error":"/Pantograph.ext/temp/_lean_15152_1_12436038519257.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":362,"instance_id":0,"success":true,"wall_ms":2526,"error":""}
+{"task_id":363,"instance_id":1,"success":true,"wall_ms":2426,"error":""}
+{"task_id":364,"instance_id":0,"success":true,"wall_ms":2467,"error":""}
+{"task_id":365,"instance_id":1,"success":true,"wall_ms":2245,"error":""}
+{"task_id":366,"instance_id":0,"success":true,"wall_ms":2460,"error":""}
+{"task_id":367,"instance_id":1,"success":true,"wall_ms":2212,"error":""}
+{"task_id":368,"instance_id":0,"success":true,"wall_ms":2445,"error":""}
+{"task_id":369,"instance_id":1,"success":true,"wall_ms":2448,"error":""}
+{"task_id":370,"instance_id":0,"success":true,"wall_ms":2477,"error":""}
+{"task_id":371,"instance_id":1,"success":false,"wall_ms":2444,"error":"/Pantograph.ext/temp/_lean_15152_1_12447810169699.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":372,"instance_id":0,"success":true,"wall_ms":2443,"error":""}
+{"task_id":373,"instance_id":1,"success":true,"wall_ms":2490,"error":""}
+{"task_id":374,"instance_id":0,"success":true,"wall_ms":2441,"error":""}
+{"task_id":375,"instance_id":1,"success":true,"wall_ms":2427,"error":""}
+{"task_id":376,"instance_id":0,"success":true,"wall_ms":2373,"error":""}
+{"task_id":377,"instance_id":1,"success":true,"wall_ms":2494,"error":""}
+{"task_id":378,"instance_id":0,"success":true,"wall_ms":2511,"error":""}
+{"task_id":379,"instance_id":1,"success":true,"wall_ms":2532,"error":""}
+{"task_id":380,"instance_id":0,"success":true,"wall_ms":2455,"error":""}
+{"task_id":381,"instance_id":1,"success":false,"wall_ms":2211,"error":"/Pantograph.ext/temp/_lean_15152_1_12460199185266.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":382,"instance_id":0,"success":true,"wall_ms":2527,"error":""}
+{"task_id":383,"instance_id":1,"success":true,"wall_ms":2548,"error":""}
+{"task_id":384,"instance_id":0,"success":true,"wall_ms":2464,"error":""}
+{"task_id":386,"instance_id":0,"success":true,"wall_ms":2459,"error":""}
+{"task_id":387,"instance_id":1,"success":true,"wall_ms":2448,"error":""}
+{"task_id":388,"instance_id":0,"success":true,"wall_ms":2623,"error":""}
+{"task_id":389,"instance_id":1,"success":true,"wall_ms":2101,"error":""}
+{"task_id":390,"instance_id":0,"success":true,"wall_ms":2468,"error":""}
+{"task_id":391,"instance_id":1,"success":false,"wall_ms":2441,"error":"/Pantograph.ext/temp/_lean_15152_1_12478104761920.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":385,"instance_id":1,"success":true,"wall_ms":17624,"error":""}
+{"task_id":392,"instance_id":0,"success":true,"wall_ms":2495,"error":""}
+{"task_id":393,"instance_id":1,"success":true,"wall_ms":2196,"error":""}
+{"task_id":394,"instance_id":0,"success":true,"wall_ms":2176,"error":""}
+{"task_id":395,"instance_id":1,"success":true,"wall_ms":2446,"error":""}
+{"task_id":396,"instance_id":0,"success":true,"wall_ms":2361,"error":""}
+{"task_id":397,"instance_id":1,"success":true,"wall_ms":2235,"error":""}
+{"task_id":398,"instance_id":0,"success":true,"wall_ms":2435,"error":""}
+{"task_id":399,"instance_id":1,"success":true,"wall_ms":2440,"error":""}
+{"task_id":400,"instance_id":0,"success":true,"wall_ms":2430,"error":""}
+{"task_id":402,"instance_id":0,"success":true,"wall_ms":2636,"error":""}
+{"task_id":403,"instance_id":1,"success":true,"wall_ms":2453,"error":""}
+{"task_id":404,"instance_id":0,"success":true,"wall_ms":2476,"error":""}
+{"task_id":405,"instance_id":1,"success":true,"wall_ms":2427,"error":""}
+{"task_id":406,"instance_id":0,"success":true,"wall_ms":2445,"error":""}
+{"task_id":407,"instance_id":1,"success":true,"wall_ms":2469,"error":""}
+{"task_id":408,"instance_id":0,"success":true,"wall_ms":2465,"error":""}
+{"task_id":409,"instance_id":1,"success":true,"wall_ms":2196,"error":""}
+{"task_id":410,"instance_id":0,"success":true,"wall_ms":2512,"error":""}
+{"task_id":411,"instance_id":1,"success":false,"wall_ms":2411,"error":"/Pantograph.ext/temp/_lean_15152_1_12514528200799.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":412,"instance_id":0,"success":true,"wall_ms":2152,"error":""}
+{"task_id":401,"instance_id":1,"success":false,"wall_ms":27521,"error":"/Pantograph.ext/temp/_lean_15152_1_12491902860015.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":414,"instance_id":0,"success":true,"wall_ms":2206,"error":""}
+{"task_id":413,"instance_id":1,"success":true,"wall_ms":2862,"error":""}
+{"task_id":415,"instance_id":1,"success":true,"wall_ms":2500,"error":""}
+{"task_id":416,"instance_id":0,"success":true,"wall_ms":2433,"error":""}
+{"task_id":417,"instance_id":1,"success":true,"wall_ms":2468,"error":""}
+{"task_id":418,"instance_id":0,"success":true,"wall_ms":2381,"error":""}
+{"task_id":419,"instance_id":1,"success":true,"wall_ms":2426,"error":""}
+{"task_id":420,"instance_id":0,"success":true,"wall_ms":2411,"error":""}
+{"task_id":421,"instance_id":1,"success":false,"wall_ms":2451,"error":"/Pantograph.ext/temp/_lean_15152_1_12529026884333.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":422,"instance_id":0,"success":true,"wall_ms":2483,"error":""}
+{"task_id":423,"instance_id":1,"success":true,"wall_ms":2176,"error":""}
+{"task_id":425,"instance_id":1,"success":true,"wall_ms":2495,"error":""}
+{"task_id":424,"instance_id":0,"success":true,"wall_ms":5140,"error":""}
+{"task_id":426,"instance_id":0,"success":true,"wall_ms":2454,"error":""}
+{"task_id":427,"instance_id":1,"success":true,"wall_ms":2470,"error":""}
+{"task_id":428,"instance_id":0,"success":true,"wall_ms":2467,"error":""}
+{"task_id":429,"instance_id":1,"success":true,"wall_ms":2476,"error":""}
+{"task_id":430,"instance_id":0,"success":true,"wall_ms":2548,"error":""}
+{"task_id":431,"instance_id":1,"success":false,"wall_ms":2416,"error":"/Pantograph.ext/temp/_lean_15152_1_12541752391455.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":432,"instance_id":0,"success":true,"wall_ms":2335,"error":""}
+{"task_id":433,"instance_id":1,"success":true,"wall_ms":2340,"error":""}
+{"task_id":434,"instance_id":0,"success":true,"wall_ms":2409,"error":""}
+{"task_id":435,"instance_id":1,"success":true,"wall_ms":2484,"error":""}
+{"task_id":436,"instance_id":0,"success":true,"wall_ms":2141,"error":""}
+{"task_id":437,"instance_id":1,"success":true,"wall_ms":2431,"error":""}
+{"task_id":438,"instance_id":0,"success":true,"wall_ms":2433,"error":""}
+{"task_id":439,"instance_id":1,"success":true,"wall_ms":2465,"error":""}
+{"task_id":440,"instance_id":0,"success":true,"wall_ms":2446,"error":""}
+{"task_id":441,"instance_id":1,"success":false,"wall_ms":2449,"error":"/Pantograph.ext/temp/_lean_15152_1_12553890786192.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":443,"instance_id":1,"success":true,"wall_ms":2448,"error":""}
+{"task_id":444,"instance_id":0,"success":true,"wall_ms":2209,"error":""}
+{"task_id":442,"instance_id":0,"success":true,"wall_ms":6935,"error":""}
+{"task_id":445,"instance_id":1,"success":true,"wall_ms":2442,"error":""}
+{"task_id":446,"instance_id":0,"success":true,"wall_ms":2593,"error":""}
+{"task_id":447,"instance_id":1,"success":true,"wall_ms":2211,"error":""}
+{"task_id":448,"instance_id":0,"success":true,"wall_ms":2331,"error":""}
+{"task_id":449,"instance_id":1,"success":true,"wall_ms":2469,"error":""}
+{"task_id":450,"instance_id":0,"success":true,"wall_ms":2411,"error":""}
+{"task_id":452,"instance_id":0,"success":true,"wall_ms":2454,"error":""}
+{"task_id":453,"instance_id":1,"success":true,"wall_ms":2181,"error":""}
+{"task_id":454,"instance_id":0,"success":true,"wall_ms":2170,"error":""}
+{"task_id":451,"instance_id":1,"success":false,"wall_ms":9984,"error":"/Pantograph.ext/temp/_lean_15152_1_12568122079451.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":455,"instance_id":1,"success":true,"wall_ms":2410,"error":""}
+{"task_id":456,"instance_id":0,"success":true,"wall_ms":2423,"error":""}
+{"task_id":457,"instance_id":1,"success":true,"wall_ms":2453,"error":""}
+{"task_id":458,"instance_id":0,"success":true,"wall_ms":2508,"error":""}
+{"task_id":459,"instance_id":1,"success":true,"wall_ms":2471,"error":""}
+{"task_id":461,"instance_id":1,"success":false,"wall_ms":2400,"error":"/Pantograph.ext/temp/_lean_15152_1_12583801488479.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":462,"instance_id":0,"success":true,"wall_ms":2458,"error":""}
+{"task_id":463,"instance_id":1,"success":true,"wall_ms":2547,"error":""}
+{"task_id":464,"instance_id":0,"success":true,"wall_ms":2449,"error":""}
+{"task_id":465,"instance_id":1,"success":true,"wall_ms":8569,"error":""}
+{"task_id":466,"instance_id":0,"success":true,"wall_ms":2450,"error":""}
+{"task_id":467,"instance_id":1,"success":true,"wall_ms":2473,"error":""}
+{"task_id":468,"instance_id":0,"success":true,"wall_ms":2392,"error":""}
+{"task_id":469,"instance_id":1,"success":true,"wall_ms":2410,"error":""}
+{"task_id":470,"instance_id":0,"success":true,"wall_ms":2524,"error":""}
+{"task_id":471,"instance_id":1,"success":false,"wall_ms":2469,"error":"/Pantograph.ext/temp/_lean_15152_1_12614478702191.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":460,"instance_id":0,"success":true,"wall_ms":34564,"error":""}
+{"task_id":472,"instance_id":0,"success":true,"wall_ms":2316,"error":""}
+{"task_id":473,"instance_id":1,"success":true,"wall_ms":2472,"error":""}
+{"task_id":474,"instance_id":0,"success":true,"wall_ms":2443,"error":""}
+{"task_id":475,"instance_id":1,"success":true,"wall_ms":2419,"error":""}
+{"task_id":476,"instance_id":0,"success":true,"wall_ms":2497,"error":""}
+{"task_id":477,"instance_id":1,"success":true,"wall_ms":2237,"error":""}
+{"task_id":478,"instance_id":0,"success":true,"wall_ms":2464,"error":""}
+{"task_id":479,"instance_id":1,"success":true,"wall_ms":2469,"error":""}
+{"task_id":480,"instance_id":0,"success":true,"wall_ms":2417,"error":""}
+{"task_id":481,"instance_id":1,"success":false,"wall_ms":2150,"error":"/Pantograph.ext/temp/_lean_15152_1_12627203229623.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":482,"instance_id":0,"success":true,"wall_ms":2396,"error":""}
+{"task_id":483,"instance_id":1,"success":true,"wall_ms":2204,"error":""}
+{"task_id":485,"instance_id":1,"success":true,"wall_ms":2452,"error":""}
+{"task_id":484,"instance_id":0,"success":true,"wall_ms":2947,"error":""}
+{"task_id":486,"instance_id":0,"success":true,"wall_ms":2598,"error":""}
+{"task_id":487,"instance_id":1,"success":true,"wall_ms":2470,"error":""}
+{"task_id":488,"instance_id":0,"success":true,"wall_ms":2475,"error":""}
+{"task_id":489,"instance_id":1,"success":true,"wall_ms":2469,"error":""}
+{"task_id":490,"instance_id":0,"success":true,"wall_ms":2482,"error":""}
+{"task_id":491,"instance_id":1,"success":false,"wall_ms":2568,"error":"/Pantograph.ext/temp/_lean_15152_1_12639371463064.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":492,"instance_id":0,"success":true,"wall_ms":2510,"error":""}
+{"task_id":493,"instance_id":1,"success":true,"wall_ms":2446,"error":""}
+{"task_id":494,"instance_id":0,"success":true,"wall_ms":2454,"error":""}
+{"task_id":495,"instance_id":1,"success":true,"wall_ms":2185,"error":""}
+{"task_id":497,"instance_id":1,"success":true,"wall_ms":2428,"error":""}
+{"task_id":496,"instance_id":0,"success":true,"wall_ms":2476,"error":""}
+{"task_id":498,"instance_id":0,"success":true,"wall_ms":2159,"error":""}
+{"task_id":499,"instance_id":1,"success":true,"wall_ms":2349,"error":""}

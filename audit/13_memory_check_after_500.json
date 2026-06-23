@@ -1,0 +1,9 @@
+{
+  "rss_baseline_kb": 3748,
+  "rss_after_spawn_kb": 3748,
+  "rss_max_kb": 3880,
+  "rss_growth_kb": 132,
+  "instances": 2,
+  "duration_sec": 10,
+  "samples": 20
+}
