@@ -1,4 +1,0 @@
-# Source tree hash (immutability reference)
-8c3da4ffb9ce2a8b0e5cd9e78bd07fc5  -
-
-Total .lean files: 41
