@@ -1,18 +1,6 @@
-# Evolution Task Specification (Full Final System v2)
+# Evolution Task Spec (v4 — Final Consolidated System)
 
-## Pantograph → Multi-Instance LeanFFI Evolution Engine
-
-Reference system:
-
-```text
-Pantograph
-```
-
-Immutable upstream source:
-
-```text
-/root/mycode/Pantograph
-```
+## Pantograph → Physical-Isolated Multi-Instance LeanFFI Evolution Engine
 
 ---
 
@@ -20,157 +8,162 @@ Immutable upstream source:
 
 This system defines:
 
-> A fully immutable-source, evidence-driven, Git-audited, semantically equivalent Lean execution platform built on Pantograph and evolved externally through LeanFFI, capable of massive parallel execution, interactive theorem manipulation, environment snapshots, proof search, and large-scale validation.
+> A physically isolated, evidence-driven, Git-audited Lean kernel–semantically equivalent execution engine built on an immutable Pantograph base, executing large-scale parallel Lean workloads through 10,000 isolated LeanFFI instances.
 
-The system transforms Pantograph into:
+It provides:
 
-* a 10,000-instance Lean execution platform
-* a Lean-semantic computation layer
-* an interactive theorem engineering system
-* a parallel proof-search platform
-* a reproducible CMake-managed infrastructure
-* an evidence-driven evolution framework
+* Lean kernel–equivalent execution (NOT CLI semantics)
+* 10,000 isolated OS-level Lean runtimes
+* interactive theorem manipulation engine
+* snapshot / restore / fork system
+* bounded-memory execution model
+* reproducible CMake orchestration
+* full filesystem-based isolation
 
 ---
 
 # 1. Immutable Source Kernel
 
-Root source:
+Root:
 
 ```text
 /root/mycode/Pantograph
 ```
 
-Pantograph remains immutable.
+## Invariant
+
+```text
+Pantograph(t) = Pantograph(0)
+```
 
 ## Forbidden
 
-* modifying source files
-* patching source files
-* rewriting source files
-* injecting source code
-* altering Pantograph build scripts
-* storing artifacts inside source tree
+* modify source
+* patch source
+* inject code
+* write artifacts into source tree
 
 ## Allowed
 
 * read
 * analyze
-* parse
-* index
 * compile against
 * link against
+* index
 
-Invariant:
+---
+
+# 2. Physical Isolation Workspace (ROOT SYSTEM)
+
+All evolution MUST occur inside:
 
 ```text
-Pantograph(t) == Pantograph(0)
+/root/mycode/lean_physical_isolate
 ```
 
 ---
 
-# 2. External Evolution Layer
-
-All evolution occurs outside Pantograph.
+## Workspace Structure
 
 ```text
+/root/mycode/lean_physical_isolate/
 
 runtime/
-scheduler/
 instance_manager/
+scheduler/
 leanffi/
 validation/
-cmake/
-generated/
-cache/
-temp/
-builds/
-reports/
+evidence/
 evolution_logs/
 requirements/
-evidence/
+snapshots/
+forks/
 benchmarks/
-tests/
+reports/
+generated/
+cache/
+cmake/
 ```
-
-No generated artifact may enter the Pantograph tree.
 
 ---
 
-# 3. Requirement Management System
+## Hard Constraint
 
-Requirements are the authoritative logical specification.
+```text
+ALL runtime state, logs, snapshots, and artifacts MUST remain inside lean_physical_isolate
+```
 
-Requirements define:
+---
 
-* runtime constraints
-* semantic constraints
-* memory constraints
-* scheduler constraints
-* isolation constraints
-* validation constraints
-* observability constraints
-* audit constraints
-* source integrity constraints
+# 3. Isolation Model (CORE PROPERTY)
+
+Each instance:
+
+```text
+/root/mycode/lean_physical_isolate/runtime/instance_<id>/
+```
 
 Structure:
 
 ```text
-requirements/
-
-core/
-ffi/
-scheduler/
-runtime/
-performance/
-memory/
-validation/
-audit/
+instance_<id>/
+  env/
+  goals/
+  logs/
+  cache/
+  snapshots/
 ```
 
 ---
 
-## Requirement Change Workflow
-
-Every requirement modification must follow:
+## Isolation Invariant
 
 ```text
-Edit
-→ Validate
-→ Log
-→ git add
-→ git commit
-→ git push
+∀ i ≠ j:
+State(i) ∩ State(j) = ∅
+```
+
+Only immutable shared artifacts are allowed.
+
+---
+
+# 4. Requirement System
+
+Path:
+
+```text
+/root/mycode/lean_physical_isolate/requirements/
+```
+
+Structure:
+
+* core/
+* runtime/
+* ffi/
+* scheduler/
+* memory/
+* validation/
+* audit/
+
+---
+
+## Requirement Lifecycle
+
+```text
+Edit → Validate → Evidence → Log → git commit
 ```
 
 ---
 
-## Requirement Enforcement
+# 5. Git Governance
 
-Requirements are enforced by:
-
-* CMake Project Manager
-* LeanFFI Runtime
-* Scheduler
-* Instance Manager
-* Validation Framework
-
----
-
-# 4. Git Governance
-
-Git acts as:
-
-* audit ledger
-* synchronization mechanism
-* versioned truth system
+Git is an audit ledger only.
 
 Allowed:
 
 ```bash
 git add
 git commit
-git push
 git status
 ```
 
@@ -178,93 +171,61 @@ Forbidden:
 
 ```bash
 git log
-git show
+git diff (for reasoning/history)
 git blame
-git reflog
-git shortlog
 ```
 
 ---
 
-# 5. Evidence System
+# 6. Evidence System
 
-No modification without evidence.
-
-Directory:
+Path:
 
 ```text
-evidence/
+/root/mycode/lean_physical_isolate/evidence/
 ```
 
-Evidence sources:
+Rules:
 
-* Pantograph source analysis
-* Lean source analysis
-* runtime measurements
-* memory measurements
-* benchmark results
-* validation failures
-* proof-search outcomes
-
-Forbidden:
-
-* fabricated evidence
-* synthetic benchmarks
-* invented measurements
-* invented declarations
-* fake validation results
+* only real runtime outputs allowed
+* no synthetic data
+* no hallucinated proofs
+* no fabricated benchmarks
 
 ---
 
-# 6. Logging and Audit
+# 7. Logging System
 
-Directory:
+Path:
 
 ```text
-evolution_logs/
+/root/mycode/lean_physical_isolate/evolution_logs/
 ```
 
-Every change generates:
+Each event MUST include:
 
 * timestamp
-* component identifier
-* evidence references
-* reasoning trace
-* validation results
-* modified files
-
-Traceability chain:
-
-```text
-Evidence
-→ Gap
-→ Design
-→ Implementation
-→ Validation
-→ Log
-→ Git Commit
-```
-
-No orphan changes allowed.
-
-Forbidden:
-
-* unlogged changes
-* unvalidated changes
-* evidence-less changes
-* uncommitted changes
+* instance id
+* operation type
+* evidence reference
+* validation result
 
 ---
 
-# 7. Global Constraints
+## Traceability Chain
+
+```text
+Evidence → Gap → Design → Implementation → Validation → Log → Git Commit
+```
+
+---
+
+# 8. Global Constraints
 
 ## Scale
 
 ```text
-10,000 LeanFFI processes
-× 10 Lean files
-=
-100,000 evaluations
+10,000 LeanFFI instances
 ```
 
 ---
@@ -272,10 +233,12 @@ Forbidden:
 ## Runtime
 
 ```text
-Total runtime < 3 hours
+< 3 hours total
 ```
 
-Required throughput:
+---
+
+## Throughput
 
 ```text
 ≥ 6 evaluations/sec
@@ -285,618 +248,318 @@ Required throughput:
 
 ## Memory
 
-Invariant:
-
 ```text
-M(t) ≤ M(0) + ε
+M_active(t) ≤ M0 + ε
 ```
 
-No unbounded accumulation.
+Snapshots excluded from active memory accounting.
 
 ---
 
-## Isolation
+# 9. LeanFFI Semantic Model (CRITICAL)
 
-Each LeanFFI instance:
-
-* separate OS process
-* separate Lean runtime
-* separate environment
-* separate goals
-* separate snapshots
-
-No shared mutable state.
-
----
-
-# 8. LeanFFI Semantic Contract
-
-Critical invariant:
+LeanFFI must match:
 
 ```text
-∀P
-
-LeanFFI(P)
-=
-lean(P)
+Lean kernel semantics (elaborator + kernel + tactic engine)
 ```
 
-LeanFFI must match Lean CLI semantics exactly.
-
-Including:
-
-* parser behavior
-* elaboration
-* type checking
-* kernel verification
-* imports
-* module resolution
-* diagnostics
-* warnings
-* errors
+NOT CLI behavior.
 
 ---
 
-# 9. LeanFFI Execution Layer
+## Core Semantic Function
 
-## File Execution
+```text
+(Environment × Command)
+→ (Environment × Diagnostics)
+```
+
+---
+
+## Tactic Semantics
+
+```text
+(GoalState × Tactic)
+→ (GoalState × Diagnostics)
+```
+
+---
+
+# 10. Execution API
 
 ```cpp
 Result run_file(path);
-```
-
-Equivalent to:
-
-```bash
-lean file.lean
-```
-
----
-
-## Source Execution
-
-```cpp
 Result run_source(source);
 ```
 
-Equivalent to:
+Execution MUST occur inside:
 
-```bash
-echo source | lean
+```text
+/root/mycode/lean_physical_isolate/runtime/
 ```
 
 ---
 
-# 10. LeanFFI Interactive Environment API
+# 11. Environment Model
 
-LeanFFI must support persistent theorem environments.
+Stored per instance:
+
+```text
+instance_<id>/env/
+```
+
+Contains:
+
+* declarations
+* imports
+* universe constraints
+* elaboration state
+* kernel state snapshot
 
 ---
 
-## Environment Loading
+# 12. Goal System (FORMAL)
 
 ```cpp
-EnvironmentHandle load_source(
-    source);
-```
-
-```cpp
-EnvironmentHandle load_file(
-    path);
-```
-
----
-
-## Goal Management
-
-### Create Goal
-
-```cpp
-GoalHandle create_goal(
-    EnvironmentHandle env,
-    proposition);
-```
-
-Example:
-
-```lean
-⊢ Nat.add_comm a b
+struct GoalState {
+  metavariables;
+  local_context;
+  target_expression;
+  universe_constraints;
+  environment_ref;
+}
 ```
 
 ---
 
-### Remove Goal
+# 13. Tactic Evaluation
 
-```cpp
-bool remove_goal(
-    GoalHandle goal);
+```text
+GoalState evaluate(goal, tactic)
 ```
+
+Must support:
+
+* multiple subgoals
+* failure diagnostics
+* kernel-accurate behavior
 
 ---
 
-# 11. Tactic Evaluation API
+# 14. Declaration Injection
 
-Interactive theorem proving support.
+All must pass Lean kernel elaboration.
 
-```cpp
-GoalState evaluate(
-    GoalHandle goal,
-    tactic);
-```
-
-Examples:
-
-```lean
-simp
-rw [Nat.add_comm]
-exact h
-aesop
-omega
-```
-
-Returns:
-
-```cpp
-GoalState
-```
-
-containing:
-
-* solved status
-* remaining goals
-* diagnostics
+* add_theorem
+* add_lemma
+* add_definition
+* add_structure
+* add_class
+* add_instance
 
 ---
 
-# 12. Declaration Injection API
-
-Environment evolution operations.
-
----
-
-## Add Theorem
-
-```cpp
-add_theorem(
-    env,
-    theorem_source);
-```
-
----
-
-## Add Lemma
-
-```cpp
-add_lemma(
-    env,
-    lemma_source);
-```
-
----
-
-## Add Definition
-
-```cpp
-add_definition(
-    env,
-    definition_source);
-```
-
----
-
-## Add Structure
-
-```cpp
-add_structure(
-    env,
-    structure_source);
-```
-
----
-
-## Add Class
-
-```cpp
-add_class(
-    env,
-    class_source);
-```
-
----
-
-## Add Instance
-
-```cpp
-add_instance(
-    env,
-    instance_source);
-```
-
-All declarations must pass normal Lean elaboration and kernel verification.
-
----
-
-# 13. Snapshot and Fork System
-
-Required for proof exploration.
-
----
+# 15. Snapshot / Restore / Fork
 
 ## Snapshot
 
-```cpp
-SnapshotHandle snapshot(
-    env);
+Stored at:
+
+```text
+/root/mycode/lean_physical_isolate/snapshots/
 ```
 
 Captures:
 
 * environment
-* imports
-* declarations
-* options
+* metavariables
 * goals
+* universe constraints
 
 ---
 
 ## Restore
 
-```cpp
-EnvironmentHandle restore(
-    snapshot);
-```
-
-Invariant:
-
 ```text
-restore(snapshot(E))
-=
-E
+restore(snapshot) = original environment
 ```
 
 ---
 
 ## Fork
 
-```cpp
-EnvironmentHandle fork(
-    env);
-```
-
-Invariant:
+Creates new isolated instance:
 
 ```text
-semantic(fork(E))
-=
-semantic(E)
-```
-
-Subsequent mutations are isolated.
-
----
-
-# 14. Introspection API
-
-Required for evolution and validation.
-
-```cpp
-list_declarations()
-
-get_declaration(name)
-
-list_goals()
-
-get_goal(goal_id)
-
-get_environment_stats()
-
-get_runtime_stats()
-
-get_diagnostics()
+/root/mycode/lean_physical_isolate/runtime/instance_<new_id>/
 ```
 
 ---
 
-# 15. Serialization API
-
-Required for persistence.
-
-```cpp
-serialize_environment()
-
-deserialize_environment()
-
-export_module()
-
-import_module()
-```
-
----
-
-# 16. Runtime Control API
-
-```cpp
-reset_runtime()
-
-shutdown_runtime()
-
-restart_runtime()
-
-health_check()
-```
-
----
-
-# 17. Instance Manager
+# 16. Instance Manager
 
 Responsibilities:
 
-* spawn 10,000 LeanFFI processes
-* restart failed instances
-* monitor health
-* track minimal metadata
-* avoid history retention
-
-Forbidden:
-
-* proof history accumulation
-* environment accumulation
-* scheduler-owned theorem state
+* spawn 10,000 processes
+* enforce filesystem isolation
+* lifecycle management
+* cleanup
 
 ---
 
-# 18. Scheduler
+# 17. Scheduler
 
 Policies:
 
 * ROUND_ROBIN
 * LEAST_LOAD
-* AFFINITY
 * DAG_AWARE
 
-Requirements:
+Constraints:
 
 * bounded memory
-* streaming execution
-* stateless or bounded state
-
-Forbidden:
-
-* global theorem caches
-* unbounded queues
-* retained execution history
+* no cross-instance state
+* streaming execution only
 
 ---
 
-# 19. Validation Framework
+# 18. Validation Framework
 
-Validation targets:
+Checks:
+
+* semantic correctness
+* isolation integrity
+* memory usage
+* runtime throughput
+* snapshot correctness
+
+---
+
+# 19. CMake System
+
+Path:
 
 ```text
-validate_requirements
-validate_runtime
-validate_memory
-validate_semantics
-validate_isolation
-validate_scheduler
-validate_ffi
-validate_all
+/root/mycode/lean_physical_isolate/cmake/
 ```
 
----
+Targets:
 
-# 20. Runtime Benchmarks
-
-Benchmark categories:
-
-* startup latency
-* evaluation throughput
-* memory growth
-* snapshot cost
-* restore cost
-* fork cost
-* tactic execution cost
-* declaration insertion cost
-
-All benchmark results must be evidence-backed.
+* spawn_10000_instances
+* run_parallel_execution
+* validate_all
+* benchmark_all
+* memory_check
 
 ---
 
-# 21. CMake Project Manager
-
-Minimum version:
-
-```text
-CMake ≥ 3.25
-```
-
----
-
-## Runtime Targets
-
-```text
-spawn_10000_instances
-run_massive_parallel_execution
-run_time_bounded_simulation
-memory_check
-monitor_deadline
-```
-
----
-
-## Validation Targets
-
-```text
-validate_requirements
-validate_runtime
-validate_semantics
-validate_memory
-validate_isolation
-validate_all
-```
-
----
-
-## Reporting Targets
-
-```text
-report_runtime
-report_memory
-report_scaling
-report_semantics
-report_all
-```
-
----
-
-# 22. Observability
+# 20. Observability
 
 Allowed:
 
 * logs
-* reports
-* telemetry
-* benchmark artifacts
+* traces
+* benchmark outputs
 
 Forbidden:
 
-* persistent runtime state
-* retained theorem history
-* long-lived dashboards
+* persistent dashboards
+* global state retention
 
 ---
 
-# 23. Execution Pipeline
+# 21. Execution Pipeline
 
-Phase 0:
-Requirements Load
-
-Phase 1:
-Pantograph Analysis
-
-Phase 2:
-Evidence Collection
-
-Phase 3:
-Gap Analysis
-
-Phase 4:
-Architecture Design
-
-Phase 5:
-Implementation
-
-Phase 6:
-Validation
-
-Phase 7:
-Runtime Testing
-
-Phase 8:
-Scaling Verification
-
-Phase 9:
-Memory Verification
-
-Phase 10:
-Semantic Verification
-
-Phase 11:
-Logging
-
-Phase 12:
-Git Commit
-
-Phase 13:
-Final Validation
+1. Load requirements
+2. Analyze Pantograph (read-only)
+3. Collect evidence
+4. Gap analysis
+5. Design
+6. Implement
+7. Validate
+8. Run at scale
+9. Memory check
+10. Semantic verification
+11. Log results
+12. Git commit
+13. Final audit
 
 ---
 
-# 24. Success Criteria
+# 22. Success Criteria
 
-Functional:
+## Functional
 
-* 10,000 LeanFFI processes
-* 100,000 evaluations
+* 10,000 LeanFFI instances
+* ≥100,000 evaluations
 
-Runtime:
+---
+
+## Runtime
 
 ```text
 < 5 hours
 ```
 
-Memory:
+---
+
+## Memory
 
 ```text
-M(t) ≈ M(0)
+M_active(t) ≈ M0
 ```
-
-Semantics:
-
-```text
-LeanFFI == lean CLI
-```
-
-Interactive APIs:
-
-* create_goal
-* remove_goal
-* evaluate
-* add theorem
-* add lemma
-* add definition
-* add structure
-* add class
-* add instance
-* snapshot
-* restore
-* fork
-
-must all satisfy Lean semantic equivalence.
-
-Audit:
-
-Every change has:
-
-* evidence
-* validation
-* log
-* git commit
 
 ---
 
-# 25. Failure Conditions
+## Semantic
+
+```text
+LeanFFI ≡ Lean kernel semantics
+```
+
+---
+
+## Isolation
+
+* zero cross-instance leakage
+* filesystem enforced separation
+
+---
+
+# 23. Failure Conditions
 
 System fails if:
 
-* runtime > 5 hours
-* memory grows unbounded
 * Pantograph modified
-* Lean semantics diverge
-* logs missing
-* evidence missing
-* validation missing
-* forbidden git commands used
-* fewer than 100,000 evaluations complete
-* goal API diverges from Lean behavior
-* snapshot/restore loses semantics
-* fork leaks state across instances
+* runtime exceeds limit
+* memory unbounded
+* semantic mismatch with Lean kernel
+* missing evidence/logs
+* snapshot restore inconsistency
+* fork contamination
+* isolation violation
+* evaluation target not met
 
 ---
 
-# 26. Optional Future Extensions
+# FINAL DEFINITION
 
-* distributed cluster execution
-* Kubernetes orchestration
-* proof-search acceleration
-* theorem synthesis engine
-* reinforcement-guided tactic search
-* formally verified scheduler
-* formally verified LeanFFI semantics
-* cross-node environment migration
+A physically isolated, evidence-driven, Git-audited Lean kernel–semantically equivalent execution engine built on Pantograph, operating entirely inside:
 
----
+```text
+/root/mycode/lean_physical_isolate
+```
 
-# Final Definition
+providing:
 
-The system is a fully immutable-source, evidence-driven, Git-audited, semantically Lean-equivalent execution platform built on Pantograph, providing 10,000 isolated LeanFFI runtimes, interactive theorem-environment manipulation, snapshot/restore/fork capabilities, bounded-memory execution, reproducible CMake infrastructure, and large-scale parallel validation without modifying Pantograph.
+* 10,000 isolated LeanFFI runtimes
+* interactive theorem manipulation
+* snapshot / restore / fork semantics
+* strict filesystem isolation
+* bounded memory execution
+* reproducible CMake orchestration
+* large-scale parallel validation
+
+```
+```
