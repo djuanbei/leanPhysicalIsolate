@@ -74,7 +74,6 @@ Pantograph(t) == Pantograph(0)
 All evolution occurs outside Pantograph.
 
 ```text
-/tmp/Pantograph.ext/
 
 runtime/
 scheduler/
