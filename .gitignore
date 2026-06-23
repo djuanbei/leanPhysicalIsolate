@@ -1,0 +1,7 @@
+builds/
+cache/
+temp/
+generated/
+*.o
+*.so
+*.a
