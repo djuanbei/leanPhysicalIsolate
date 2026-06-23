@@ -51,6 +51,8 @@ int main(int argc, char** argv) {
     using namespace leanffi;
 
     std::string repl_path = "/root/mycode/Pantograph/.lake/build/bin/repl";
+    std::string lean_path = "/root/.elan/bin/lean";
+    std::string backend = "cli";   // default: CLI mode (always available)
     std::string report_dir = "/Pantograph.ext/reports";
     std::vector<std::string> cases;
 
@@ -63,12 +65,16 @@ int main(int argc, char** argv) {
     for (int i = 1; i < argc; ++i) {
         std::string a = argv[i];
         if (a == "--repl") repl_path = argv[++i];
+        else if (a == "--lean") lean_path = argv[++i];
+        else if (a == "--backend") backend = argv[++i];
     }
 
-    std::cout << "[validate] repl=" << repl_path << " cases=" << cases.size() << "\n";
+    std::cout << "[validate] backend=" << backend << " cases=" << cases.size() << "\n";
 
     // Spawn 1 instance for LeanFFI side
-    auto instances = spawn_instances(1, repl_path, std::vector<std::string>{});
+    auto instances = (backend == "cli")
+        ? spawn_instances_cli(1, lean_path, std::vector<std::string>{})
+        : spawn_instances(1, repl_path, std::vector<std::string>{});
     if (instances.empty()) {
         std::cerr << "[validate] failed to spawn LeanFFI instance\n";
         return 1;

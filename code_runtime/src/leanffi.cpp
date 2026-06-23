@@ -16,6 +16,7 @@
 #include <iomanip>
 #include <sstream>
 #include <stdexcept>
+#include <fstream>
 
 namespace leanffi {
 
@@ -96,15 +97,20 @@ std::string escape_json_string(const std::string& s) {
     return out;
 }
 
-LeanFFI::LeanFFI(int64_t instance_id, const std::string& repl_path,
-                 const std::vector<std::string>& modules)
-    : instance_id_(instance_id), repl_path_(repl_path), modules_(modules) {}
+LeanFFI::LeanFFI(int64_t instance_id, const std::string& backend_path,
+                 const std::vector<std::string>& modules, LeanFFIMode mode)
+    : instance_id_(instance_id), backend_path_(backend_path), modules_(modules),
+      mode_(mode) {}
 
 LeanFFI::~LeanFFI() {
     shutdown();
 }
 
 bool LeanFFI::initialize() {
+    if (mode_ == LeanFFIMode::CLI) {
+        // CLI mode: no subprocess; tasks invoke `lean` on demand.
+        return true;
+    }
     int in_pipe[2];
     int out_pipe[2];
     if (pipe(in_pipe) != 0) return false;
@@ -133,14 +139,14 @@ bool LeanFFI::initialize() {
 
         // Build argv: repl_path + module args
         std::vector<std::string> args;
-        args.push_back(repl_path_);
+        args.push_back(backend_path_);
         for (const auto& m : modules_) args.push_back(m);
         std::vector<char*> argv;
         argv.reserve(args.size() + 1);
         for (auto& a : args) argv.push_back(a.data());
         argv.push_back(nullptr);
 
-        execv(repl_path_.c_str(), argv.data());
+        execv(backend_path_.c_str(), argv.data());
         // If exec fails:
         _exit(127);
     }
@@ -183,6 +189,9 @@ void LeanFFI::kill_subprocess() {
 }
 
 void LeanFFI::shutdown() {
+    if (mode_ == LeanFFIMode::CLI) {
+        return;  // no subprocess to shut down
+    }
     if (pid_ > 0) {
         // Empty line aborts the REPL loop.
         const char* empty = "\n";
@@ -244,6 +253,13 @@ bool LeanFFI::read_response_line(std::string& out, double timeout_seconds) {
 }
 
 Result LeanFFI::execute(const Task& task) {
+    if (mode_ == LeanFFIMode::CLI) {
+        return execute_cli(task);
+    }
+    return execute_repl(task);
+}
+
+Result LeanFFI::execute_repl(const Task& task) {
     Result r;
     r.instance_id = instance_id_;
     auto start = std::chrono::steady_clock::now();
@@ -282,15 +298,73 @@ Result LeanFFI::execute(const Task& task) {
     return r;
 }
 
+Result LeanFFI::execute_cli(const Task& task) {
+    Result r;
+    r.instance_id = instance_id_;
+    auto t0 = std::chrono::steady_clock::now();
+
+    // Write source to a unique temp file
+    std::string tmp = "/Pantograph.ext/temp/_lean_"
+                    + std::to_string(::getpid()) + "_"
+                    + std::to_string(instance_id_) + "_"
+                    + std::to_string(std::chrono::steady_clock::now()
+                                     .time_since_epoch().count())
+                    + ".lean";
+    {
+        std::ofstream f(tmp);
+        if (task.kind == SourceKind::File) {
+            std::ifstream src(task.content);
+            f << src.rdbuf();
+        } else {
+            f << task.content;
+        }
+    }
+
+    // Run lean; capture combined stdout+stderr.
+    std::string cmd = backend_path_ + " \"" + tmp + "\" 2>&1";
+    FILE* p = popen(cmd.c_str(), "r");
+    std::string out;
+    if (p) {
+        char buf[4096];
+        while (fgets(buf, sizeof(buf), p)) out += buf;
+        int rc = pclose(p);
+        r.success = (rc == 0);
+        if (!r.success) r.error_message = out;
+    } else {
+        r.error_message = "popen failed";
+    }
+    ::unlink(tmp.c_str());
+
+    r.stdout_text = out;
+    r.wall_seconds = std::chrono::duration<double>(
+        std::chrono::steady_clock::now() - t0).count();
+    return r;
+}
+
 std::vector<std::unique_ptr<LeanFFI>> spawn_instances(
     size_t n, const std::string& repl_path,
     const std::vector<std::string>& modules) {
     std::vector<std::unique_ptr<LeanFFI>> out;
     out.reserve(n);
     for (size_t i = 0; i < n; ++i) {
-        auto inst = std::make_unique<LeanFFI>((int64_t)i, repl_path, modules);
+        auto inst = std::make_unique<LeanFFI>((int64_t)i, repl_path, modules, LeanFFIMode::REPL);
         if (!inst->initialize()) {
             // Initialization failed — skip this instance.
+            continue;
+        }
+        out.push_back(std::move(inst));
+    }
+    return out;
+}
+
+std::vector<std::unique_ptr<LeanFFI>> spawn_instances_cli(
+    size_t n, const std::string& lean_path,
+    const std::vector<std::string>& modules) {
+    std::vector<std::unique_ptr<LeanFFI>> out;
+    out.reserve(n);
+    for (size_t i = 0; i < n; ++i) {
+        auto inst = std::make_unique<LeanFFI>((int64_t)i, lean_path, modules, LeanFFIMode::CLI);
+        if (!inst->initialize()) {
             continue;
         }
         out.push_back(std::move(inst));

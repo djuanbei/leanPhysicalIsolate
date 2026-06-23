@@ -1,0 +1,14 @@
+{
+  "logical_instances": 5,
+  "per_instance_tasks": 1,
+  "physical_instances": 2,
+  "sample_files": 10,
+  "total_evaluations": 5,
+  "succeeded": 4,
+  "failed": 1,
+  "total_seconds": 24.3636,
+  "eval_per_sec": 0.164179,
+  "policy": "ROUND_ROBIN",
+  "backend": "cli",
+  "host": { "nproc": 2, "mem_avail_kb": 858524 }
+}

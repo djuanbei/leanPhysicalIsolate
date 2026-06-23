@@ -67,4 +67,18 @@ int InstanceManager::spawn(int physical_concurrency,
     return (int)pool_.size();
 }
 
+int InstanceManager::spawn_cli(int physical_concurrency,
+                              const std::string& lean_path,
+                              const std::vector<std::string>& modules) {
+    auto instances = spawn_instances_cli((size_t)physical_concurrency, lean_path, modules);
+    owners_.reserve(instances.size());
+    pool_.reserve(instances.size());
+    for (auto& u : instances) {
+        LeanFFI* p = u.get();
+        pool_.push_back(p);
+        owners_.push_back(std::move(u));
+    }
+    return (int)pool_.size();
+}
+
 }  // namespace leanffi

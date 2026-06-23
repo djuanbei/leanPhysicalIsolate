@@ -1,0 +1,12 @@
+{"task_id":0,"instance_id":0,"success":false,"wall_ms":4819,"error":""}
+{"task_id":1,"instance_id":1,"success":false,"wall_ms":2460,"error":""}
+{"task_id":2,"instance_id":0,"success":false,"wall_ms":2413,"error":""}
+{"task_id":3,"instance_id":1,"success":false,"wall_ms":2531,"error":""}
+{"task_id":4,"instance_id":0,"success":false,"wall_ms":2394,"error":""}
+{"task_id":0,"instance_id":0,"success":true,"wall_ms":2477,"error":""}
+{"task_id":1,"instance_id":1,"success":false,"wall_ms":2531,"error":"/Pantograph.ext/temp/_lean_8030_1_7729067154442.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":0,"instance_id":0,"success":true,"wall_ms":2377,"error":""}
+{"task_id":1,"instance_id":1,"success":false,"wall_ms":2493,"error":"/Pantograph.ext/temp/_lean_8495_1_8221866773929.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":2,"instance_id":0,"success":true,"wall_ms":2708,"error":""}
+{"task_id":3,"instance_id":1,"success":true,"wall_ms":14084,"error":""}
+{"task_id":4,"instance_id":0,"success":true,"wall_ms":2699,"error":""}

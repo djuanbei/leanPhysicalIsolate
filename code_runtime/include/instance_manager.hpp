@@ -39,6 +39,11 @@ public:
               const std::string& repl_path,
               const std::vector<std::string>& modules);
 
+    // Spawn CLI-mode instances (one `lean` invocation per task).
+    int spawn_cli(int physical_concurrency,
+                  const std::string& lean_path,
+                  const std::vector<std::string>& modules);
+
     std::vector<LeanFFI*>& instances() { return pool_; }
     const std::vector<LeanFFI*>& instances() const { return pool_; }
     size_t physical_count() const { return pool_.size(); }

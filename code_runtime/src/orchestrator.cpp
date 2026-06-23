@@ -58,6 +58,8 @@ int main(int argc, char** argv) {
 
     // Defaults
     std::string repl_path = "/root/mycode/Pantograph/.lake/build/bin/repl";
+    std::string lean_path = "/root/.elan/bin/lean";
+    std::string backend = "repl";   // "repl" (Pantograph) or "cli" (lean CLI)
     std::string tasks_file;       // JSON or simple list of source strings
     int logical_instances = 10000;
     int per_instance_tasks = 10;  // 10000 * 10 = 100,000 evaluations
@@ -74,6 +76,8 @@ int main(int argc, char** argv) {
             return argv[++i];
         };
         if (a == "--repl") repl_path = next(a);
+        else if (a == "--lean") lean_path = next(a);
+        else if (a == "--backend") backend = next(a);
         else if (a == "--tasks") tasks_file = next(a);
         else if (a == "--logical") logical_instances = std::stoi(next(a));
         else if (a == "--per-instance") per_instance_tasks = std::stoi(next(a));
@@ -102,16 +106,24 @@ int main(int argc, char** argv) {
     // Load sample tasks
     std::vector<std::string> sample_sources;
     if (!samples_dir.empty()) {
-        // Read all *.lean files from samples_dir
+        // Read all *.lean files from samples_dir; for each file, read its
+        // content as the source string. Each sample is a complete Lean
+        // source unit.
         std::string cmd = "ls -1 " + samples_dir + "/*.lean 2>/dev/null | head -20";
         FILE* p = popen(cmd.c_str(), "r");
         if (p) {
             char buf[512];
             while (fgets(buf, sizeof(buf), p)) {
-                std::string s = buf;
-                while (!s.empty() && (s.back() == '\n' || s.back() == '\r' || s.back() == ' '))
-                    s.pop_back();
-                if (!s.empty()) sample_sources.push_back(s);
+                std::string path = buf;
+                while (!path.empty() && (path.back() == '\n' || path.back() == '\r' || path.back() == ' '))
+                    path.pop_back();
+                if (path.empty()) continue;
+                // Read the file's content as the source.
+                std::ifstream f(path);
+                if (!f) continue;
+                std::stringstream ss; ss << f.rdbuf();
+                std::string content = ss.str();
+                if (!content.empty()) sample_sources.push_back(content);
             }
             pclose(p);
         }
@@ -150,17 +162,25 @@ int main(int argc, char** argv) {
 
     // Spawn physical pool
     InstanceManager mgr;
-    int spawned = mgr.spawn(phys_cap, repl_path, modules);
+    int spawned = 0;
+    std::cout << "[orchestrator] spawning physical pool (cap=" << phys_cap << ")..." << std::flush;
+    if (backend == "cli") {
+        spawned = mgr.spawn_cli(phys_cap, lean_path, modules);
+        std::cout << "OK\n[orchestrator] using CLI backend: " << lean_path << "\n" << std::flush;
+    } else {
+        spawned = mgr.spawn(phys_cap, repl_path, modules);
+        std::cout << "OK\n[orchestrator] using REPL backend: " << repl_path << "\n" << std::flush;
+    }
     if (spawned == 0) {
-        std::cerr << "[orchestrator] failed to spawn any LeanFFI instance; check repl at " << repl_path << "\n";
+        std::cerr << "[orchestrator] failed to spawn any LeanFFI instance\n";
         log_event("PHASE7_FAIL", "instance_manager", "spawn failed", "fail", "instance_manager.cpp",
                   "Zero instances spawned; aborting", log_dir);
         return 1;
     }
     log_event("PHASE5_IMPL", "instance_manager",
-              "fork+execve of repl subprocess",
+              "fork+execve (REPL) or popen (CLI)",
               "ok", "instance_manager.cpp",
-              "Spawned " + std::to_string(spawned) + " physical LeanFFI instances",
+              "Spawned " + std::to_string(spawned) + " physical LeanFFI instances (backend=" + backend + ")",
               log_dir);
 
     // Choose policy
@@ -214,6 +234,7 @@ int main(int argc, char** argv) {
         << "  \"total_seconds\": " << total_seconds << ",\n"
         << "  \"eval_per_sec\": " << eval_per_sec << ",\n"
         << "  \"policy\": \"" << policy << "\",\n"
+        << "  \"backend\": \"" << backend << "\",\n"
         << "  \"host\": { \"nproc\": " << hc.nproc
         << ", \"mem_avail_kb\": " << hc.mem_avail_kb << " }\n"
         << "}\n";
