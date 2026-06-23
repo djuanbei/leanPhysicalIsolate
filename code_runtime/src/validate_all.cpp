@@ -6,15 +6,17 @@
 #include <vector>
 
 int main() {
+    // Always use CLI backend for validations; REPL is not built.
+    std::string cli_args = " --backend cli --lean /root/.elan/bin/lean";
     std::vector<std::pair<std::string, std::string>> targets = {
-        {"semantic", "/Pantograph.ext/builds/validate_semantic"},
-        {"isolation", "/Pantograph.ext/builds/validate_isolation"},
+        {"semantic", "/Pantograph.ext/builds/validate_semantic" + cli_args},
+        {"isolation", "/Pantograph.ext/builds/validate_isolation" + cli_args},
         {"requirements", "/Pantograph.ext/builds/validate_requirements"},
     };
     int failed = 0;
-    for (auto& [name, path] : targets) {
-        std::cout << "[validate_all] running " << name << " (" << path << ")\n";
-        int rc = std::system(path.c_str());
+    for (auto& [name, cmd] : targets) {
+        std::cout << "[validate_all] running " << name << " (" << cmd << ")\n";
+        int rc = std::system(cmd.c_str());
         if (rc != 0) {
             std::cout << "[validate_all] " << name << " FAILED rc=" << rc << "\n";
             failed++;

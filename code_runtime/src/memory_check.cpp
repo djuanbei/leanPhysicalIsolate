@@ -11,6 +11,7 @@
 #include <string>
 #include <chrono>
 #include <thread>
+#include <cctype>
 #include <sys/types.h>
 #include <sys/sysinfo.h>
 #include <unistd.h>
@@ -19,9 +20,17 @@ namespace {
 
 int64_t read_self_rss_kb() {
     std::ifstream f("/proc/self/status");
-    std::string key, val, unit;
-    while (f >> key >> val >> unit) {
-        if (key == "VmRSS:") return std::stoll(val);
+    std::string line;
+    while (std::getline(f, line)) {
+        // Look for "VmRSS:" prefix
+        if (line.compare(0, 6, "VmRSS:") == 0) {
+            // Skip the key, find the first number
+            size_t pos = 6;
+            while (pos < line.size() && !std::isdigit((unsigned char)line[pos])) pos++;
+            if (pos < line.size()) {
+                return std::stoll(line.substr(pos));
+            }
+        }
     }
     return 0;
 }
@@ -31,12 +40,16 @@ int64_t read_self_rss_kb() {
 int main(int argc, char** argv) {
     using namespace leanffi;
     std::string repl_path = "/root/mycode/Pantograph/.lake/build/bin/repl";
+    std::string lean_path = "/root/.elan/bin/lean";
+    std::string backend = "cli";
     int duration_sec = 30;
     int sample_interval_ms = 500;
 
     for (int i = 1; i + 1 < argc; ++i) {
         std::string a = argv[i];
         if (a == "--repl") repl_path = argv[++i];
+        else if (a == "--lean") lean_path = argv[++i];
+        else if (a == "--backend") backend = argv[++i];
         else if (a == "--duration") duration_sec = std::stoi(argv[++i]);
         else if (a == "--interval") sample_interval_ms = std::stoi(argv[++i]);
     }
@@ -44,10 +57,12 @@ int main(int argc, char** argv) {
     HostCapacity hc = probe_host_capacity();
     int phys_cap = std::min(compute_physical_concurrency(hc), 2);
     std::cout << "[memory_check] phys_cap=" << phys_cap
-              << " duration=" << duration_sec << "s\n";
+              << " duration=" << duration_sec << "s backend=" << backend << "\n";
 
     int64_t rss0 = read_self_rss_kb();
-    auto instances = spawn_instances((size_t)phys_cap, repl_path, {});
+    auto instances = (backend == "cli")
+        ? spawn_instances_cli((size_t)phys_cap, lean_path, {})
+        : spawn_instances((size_t)phys_cap, repl_path, {});
     int64_t rss1 = read_self_rss_kb();
 
     std::ofstream out("/Pantograph.ext/reports/memory_check.jsonl");

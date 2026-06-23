@@ -1,0 +1,50 @@
+{"task_id":1,"instance_id":1,"success":false,"wall_ms":2440,"error":"/Pantograph.ext/temp/_lean_10509_1_10437220211433.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":2,"instance_id":0,"success":true,"wall_ms":2521,"error":""}
+{"task_id":3,"instance_id":1,"success":true,"wall_ms":2454,"error":""}
+{"task_id":4,"instance_id":0,"success":true,"wall_ms":2456,"error":""}
+{"task_id":5,"instance_id":1,"success":true,"wall_ms":2098,"error":""}
+{"task_id":0,"instance_id":0,"success":true,"wall_ms":101721,"error":""}
+{"task_id":6,"instance_id":0,"success":true,"wall_ms":90092,"error":""}
+{"task_id":7,"instance_id":1,"success":true,"wall_ms":2424,"error":""}
+{"task_id":8,"instance_id":0,"success":true,"wall_ms":2466,"error":""}
+{"task_id":9,"instance_id":1,"success":true,"wall_ms":2445,"error":""}
+{"task_id":10,"instance_id":0,"success":true,"wall_ms":2600,"error":""}
+{"task_id":11,"instance_id":1,"success":false,"wall_ms":2546,"error":"/Pantograph.ext/temp/_lean_10509_1_10543812393034.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":12,"instance_id":0,"success":true,"wall_ms":2550,"error":""}
+{"task_id":13,"instance_id":1,"success":true,"wall_ms":2489,"error":""}
+{"task_id":14,"instance_id":0,"success":true,"wall_ms":2213,"error":""}
+{"task_id":15,"instance_id":1,"success":true,"wall_ms":2504,"error":""}
+{"task_id":16,"instance_id":0,"success":true,"wall_ms":2246,"error":""}
+{"task_id":18,"instance_id":0,"success":true,"wall_ms":2416,"error":""}
+{"task_id":17,"instance_id":1,"success":true,"wall_ms":3905,"error":""}
+{"task_id":19,"instance_id":1,"success":true,"wall_ms":2449,"error":""}
+{"task_id":20,"instance_id":0,"success":true,"wall_ms":2431,"error":""}
+{"task_id":21,"instance_id":1,"success":false,"wall_ms":2830,"error":"/Pantograph.ext/temp/_lean_10509_1_10556227612120.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":22,"instance_id":0,"success":true,"wall_ms":2496,"error":""}
+{"task_id":23,"instance_id":1,"success":true,"wall_ms":2455,"error":""}
+{"task_id":24,"instance_id":0,"success":true,"wall_ms":2421,"error":""}
+{"task_id":26,"instance_id":0,"success":true,"wall_ms":4684,"error":""}
+{"task_id":27,"instance_id":1,"success":true,"wall_ms":6480,"error":""}
+{"task_id":28,"instance_id":0,"success":true,"wall_ms":2894,"error":""}
+{"task_id":29,"instance_id":1,"success":true,"wall_ms":4265,"error":""}
+{"task_id":30,"instance_id":0,"success":true,"wall_ms":2512,"error":""}
+{"task_id":25,"instance_id":1,"success":true,"wall_ms":22135,"error":""}
+{"task_id":31,"instance_id":1,"success":false,"wall_ms":2448,"error":"/Pantograph.ext/temp/_lean_10509_1_10583445772862.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":32,"instance_id":0,"success":true,"wall_ms":2431,"error":""}
+{"task_id":34,"instance_id":0,"success":true,"wall_ms":3365,"error":""}
+{"task_id":33,"instance_id":1,"success":true,"wall_ms":4408,"error":""}
+{"task_id":35,"instance_id":1,"success":true,"wall_ms":2161,"error":""}
+{"task_id":36,"instance_id":0,"success":true,"wall_ms":2450,"error":""}
+{"task_id":37,"instance_id":1,"success":true,"wall_ms":2458,"error":""}
+{"task_id":38,"instance_id":0,"success":true,"wall_ms":3222,"error":""}
+{"task_id":39,"instance_id":1,"success":true,"wall_ms":2470,"error":""}
+{"task_id":41,"instance_id":1,"success":false,"wall_ms":2916,"error":"/Pantograph.ext/temp/_lean_10509_1_10596538831530.lean:2:35: error: unknown tactic\ntrivial : True\n"}
+{"task_id":40,"instance_id":0,"success":true,"wall_ms":3986,"error":""}
+{"task_id":42,"instance_id":0,"success":true,"wall_ms":2501,"error":""}
+{"task_id":44,"instance_id":0,"success":true,"wall_ms":3271,"error":""}
+{"task_id":45,"instance_id":1,"success":true,"wall_ms":2482,"error":""}
+{"task_id":43,"instance_id":1,"success":true,"wall_ms":7940,"error":""}
+{"task_id":46,"instance_id":0,"success":true,"wall_ms":2550,"error":""}
+{"task_id":47,"instance_id":1,"success":true,"wall_ms":2401,"error":""}
+{"task_id":49,"instance_id":1,"success":true,"wall_ms":2445,"error":""}
+{"task_id":48,"instance_id":0,"success":true,"wall_ms":2501,"error":""}

@@ -8,6 +8,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <cctype>
 
 namespace leanffi {
 
@@ -26,12 +27,16 @@ HostCapacity probe_host_capacity() {
     }
     // Try to read /proc/meminfo for more accurate MemAvailable.
     std::ifstream f("/proc/meminfo");
-    std::string key, val, unit;
-    while (f >> key >> val >> unit) {
-        if (key == "MemAvailable:") {
-            hc.mem_avail_kb = std::stoll(val);
-        } else if (key == "MemTotal:") {
-            hc.mem_total_kb = std::stoll(val);
+    std::string line;
+    while (std::getline(f, line)) {
+        if (line.compare(0, 13, "MemAvailable:") == 0) {
+            size_t pos = 13;
+            while (pos < line.size() && !std::isdigit((unsigned char)line[pos])) pos++;
+            if (pos < line.size()) hc.mem_avail_kb = std::stoll(line.substr(pos));
+        } else if (line.compare(0, 9, "MemTotal:") == 0) {
+            size_t pos = 9;
+            while (pos < line.size() && !std::isdigit((unsigned char)line[pos])) pos++;
+            if (pos < line.size()) hc.mem_total_kb = std::stoll(line.substr(pos));
         }
     }
     return hc;

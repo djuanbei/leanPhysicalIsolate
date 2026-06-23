@@ -63,6 +63,7 @@ int main(int argc, char** argv) {
     std::string tasks_file;       // JSON or simple list of source strings
     int logical_instances = 10000;
     int per_instance_tasks = 10;  // 10000 * 10 = 100,000 evaluations
+    int explicit_concurrency = 0; // 0 = auto from host capacity
     std::string policy = "ROUND_ROBIN";
     std::string log_dir = "/Pantograph.ext/evolution_logs";
     std::string report_dir = "/Pantograph.ext/reports";
@@ -81,6 +82,7 @@ int main(int argc, char** argv) {
         else if (a == "--tasks") tasks_file = next(a);
         else if (a == "--logical") logical_instances = std::stoi(next(a));
         else if (a == "--per-instance") per_instance_tasks = std::stoi(next(a));
+        else if (a == "--concurrency") explicit_concurrency = std::stoi(next(a));
         else if (a == "--policy") policy = next(a);
         else if (a == "--log-dir") log_dir = next(a);
         else if (a == "--report-dir") report_dir = next(a);
@@ -93,6 +95,7 @@ int main(int argc, char** argv) {
     // Probe host
     HostCapacity hc = probe_host_capacity();
     int phys_cap = compute_physical_concurrency(hc);
+    if (explicit_concurrency > 0) phys_cap = explicit_concurrency;
     std::cout << "[orchestrator] host: nproc=" << hc.nproc
               << " mem_avail_kb=" << hc.mem_avail_kb
               << " per_instance_mb=" << hc.per_instance_mb
