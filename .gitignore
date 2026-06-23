@@ -1,7 +1,22 @@
-builds/
-cache/
-temp/
-generated/
+# Build outputs
+build/
 *.o
-*.so
 *.a
+*.so
+
+# Repl binary (built locally; not part of the source tree)
+repl
+
+# Runtime
+runtime/
+evolution_logs/
+evidence/
+snapshots/
+forks/
+benchmarks/
+generated/
+cache/
+
+# Editor
+*.swp
+.DS_Store
