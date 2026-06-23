@@ -311,6 +311,7 @@ LeanFFI supports:
 * load file
 * create goal
 * remove goal
+* evaluate tactic: target_goal=evaluate(source_goal, tactic)
 * add theorem
 * add lemma
 * add definition
