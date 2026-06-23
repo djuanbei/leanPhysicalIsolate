@@ -1,227 +1,389 @@
 # Evolution Task Spec (Full Final System)
 
+## Pantograph → Multi-Instance LeanFFI Evolution Engine
+
+Reference system: Pantograph
+
+Reference source tree:
+
+```text
+/root/mycode/Pantograph
+```
+
 ---
 
 # 0. System Identity
 
 This system defines a:
 
-> **non-invasive, evidence-driven, Git-audited, multi-instance Lean execution engine**
+> **Non-invasive, evidence-driven, Git-audited, multi-instance LeanFFI execution platform**
 
-It transforms Pantograph into a:
+that transforms Pantograph into a:
 
-* 10,000-instance LeanFFI execution platform
-* fully isolated OS-level compute system
-* stateless C++ orchestrator
-* strict time + memory bounded system
-* forward-only Git evolution environment
-* log-driven audit machine
+* massively parallel Lean execution engine
+* process-isolated Lean runtime platform
+* stateless orchestration system
+* evidence-driven evolution system
+* reproducible CMake-managed infrastructure
 
 ---
 
-# 1. Source System (IMMUTABLE KERNEL)
+# 1. Source System (Immutable Kernel)
+
+Reference repository:
 
 ```text
 /root/mycode/Pantograph
 ```
 
-### Hard Constraints:
+## Source Integrity Rules
 
-* READ ONLY forever
-* no modification
-* no patching
-* no injection
-* no build-time writes
+Pantograph is a frozen upstream dependency.
 
-Pantograph is a **frozen reference kernel**
+### Forbidden
 
----
+* modifying source files
+* patching files
+* rewriting files
+* code injection
+* generated outputs inside source tree
+* build-time writes into source tree
 
-# 2. External Evolution Layer (ALL CHANGES LIVE HERE)
+### Allowed
 
-```text
-/Pantograph.ext/
-/runtime/
-/scheduler/
-/cmake/
-/evolution_logs/
-```
+* read
+* scan
+* parse
+* analyze
+* index
+* build against
 
-Contains:
-
-* LeanFFI system
-* scheduler
-* instance manager
-* CMake orchestration
-* generated artifacts
-* logs + evidence system
-
----
-
-# 3. Requirement System (Git-Managed Truth Layer)
-
-## 3.1 Requirement Repository
+### Invariant
 
 ```text
-/root/mycode/Pantograph.requirements/
+Pantograph(t) == Pantograph(0)
+```
+
+for all execution times.
+
+---
+
+# 2. External Evolution Layer
+
+All evolution occurs outside Pantograph.
+
+Example layout:
+
+```text
+Pantograph.ext/
+runtime/
+scheduler/
+cmake/
+generated/
+cache/
+temp/
+builds/
+reports/
+evolution_logs/
+requirements/
 ```
 
 ---
 
-## 3.2 Requirement Role
+# 3. Requirement System
 
-Defines system constraints:
+## 3.1 Requirement Authority
 
-* time (< 5 hours)
-* memory (constant)
-* scale (10,000 instances)
-* isolation rules
-* scheduler policies
+Requirements define:
+
+* scale constraints
+* runtime constraints
+* memory constraints
+* isolation constraints
+* scheduler constraints
+* validation constraints
+* logging constraints
+* audit constraints
+* source integrity constraints
+
+Requirements are version-controlled artifacts and participate in the normal evolution workflow.
 
 ---
 
-## 3.3 Git Requirement Rules
+## 3.2 Requirement Organization
 
-Allowed:
+Example structure:
 
-* git add
-* git commit
-* git push
-* git status
+```text
+requirements/
+    core/
+    ffi/
+    scheduler/
+    system/
+    performance/
+```
+
+---
+
+## 3.3 Requirement Categories
+
+### Core
+
+* scale
+* memory
+* runtime
+* isolation
+
+### FFI
+
+* LeanFFI lifecycle
+* communication
+* routing
+
+### Scheduler
+
+* dispatch policy
+* load balancing
+* throttling
+
+### System
+
+* source integrity
+* Git policy
+* logging policy
+
+### Performance
+
+* throughput
+* latency
+* scaling
+
+---
+
+## 3.4 Requirement Change Policy
+
+Every requirement modification must follow:
+
+```text
+Edit
+→ Validate
+→ Log
+→ Git Add
+→ Git Commit
+→ Git Push
+```
+
+---
+
+## 3.5 Requirement Validation
+
+Requirements must be:
+
+* internally consistent
+* machine-readable
+* auditable
+* reproducible
+* validation-backed
+
+---
+
+## 3.6 Requirement Enforcement
+
+Requirements must be enforced by:
+
+* CMake Project Manager
+* Instance Manager
+* Scheduler
+* LeanFFI Runtime
+* Validation Framework
+
+---
+
+# 4. Git Governance
+
+## Allowed Commands
+
+```bash
+git add
+git commit
+git push
+git status
+```
+
+---
+
+## Forbidden Commands
+
+```bash
+git log
+git show
+git blame
+git reflog
+git shortlog
+```
+
+---
+
+## Forward-Only Evolution Rule
+
+Git is used as:
+
+* storage
+* synchronization
+* audit ledger
+
+Git is NOT used for:
+
+* history inspection
+* commit analysis
+* blame tracking
+
+---
+
+# 5. Logging & Audit Layer
+
+Directory:
+
+```text
+evolution_logs/
+```
+
+---
+
+## Mandatory Logging
+
+Every evolution event must generate:
+
+* timestamp
+* component
+* evidence
+* validation result
+* affected files
+* reason
+* next action
+
+---
+
+## Traceability Chain
+
+Every change must satisfy:
+
+```text
+Evidence
+→ Gap
+→ Design
+→ Implementation
+→ Validation
+→ Log
+→ Git Commit
+```
+
+---
+
+## No Orphan Rule
 
 Forbidden:
 
-* git log
-* git show
-* git blame
-* git reflog
-* git shortlog
-
----
-
-# 4. Logging & Audit System (NEW CORE LAYER)
-
-```text
-/evolution_logs/
-```
-
-Every action MUST generate:
-
-* timestamped log file
-* evidence reference
-* validation result
-* Git commit association
-
----
-
-## Log Rule
-
-Every system mutation must follow:
-
-```text
-Evidence → Change → Log → Git Commit → Validation
-```
-
----
-
-# 5. Core Architecture
-
-```text
-[ /root/mycode/Pantograph ] (READ ONLY)
-               ↓
-      Evidence + Analysis Layer
-               ↓
-   Requirements (Git-controlled truth)
-               ↓
-[CMake Project Manager]
-               ↓
-[External Evolution Layer]
-               ↓
-[Instance Manager]
-               ↓
-[Scheduler / Router]
-               ↓
-[LeanFFI × 10,000 processes]
-               ↓
-[Lean runtime execution]
-               ↓
-[Streaming results only]
-```
+* change without evidence
+* change without log
+* change without validation
+* change without Git commit
 
 ---
 
 # 6. Global Constraints
 
----
-
-## 6.1 Scale Constraint
+## Scale Constraint
 
 ```text
 10,000 LeanFFI instances
-× 10 .lean files
-= 100,000 evaluations
+× 10 Lean files
+=
+100,000 evaluations
 ```
 
 ---
 
-## 6.2 Time Constraint (CRITICAL)
+## Runtime Constraint
 
 ```text
-T_total < 5 hours
+Total Runtime < 5 hours
 ```
 
-Minimum throughput:
+Includes:
 
-> ≥ 6 evaluations/sec sustained
+* startup
+* scheduling
+* execution
+* cleanup
+* validation
+
+Required throughput:
+
+```text
+≥ 6 evaluations/sec
+```
 
 ---
 
-## 6.3 Memory Constraint (CRITICAL)
+## Memory Constraint
 
-C++ main process must remain constant:
+Main orchestration process:
 
 ```text
 M(t) ≤ M(0) + ε
 ```
 
-Rules:
+Where ε is bounded.
 
-* no accumulation
-* no caching
-* no history storage
-* streaming only
+### Forbidden
+
+* unbounded queues
+* retained evaluation history
+* result accumulation
+* persistent runtime caches
 
 ---
 
-## 6.4 Source Integrity Constraint (CRITICAL)
+## Isolation Constraint
+
+Every LeanFFI instance:
+
+* independent process
+* independent memory space
+* independent Lean runtime
+* no shared mutable state
+
+---
+
+# 7. LeanFFI Architecture
+
+## Core Principle
+
+Each LeanFFI object represents:
+
+> One physical isolated Lean execution environment
+
+---
+
+## LeanFFI Responsibilities
+
+* load Lean runtime
+* execute Lean requests
+* return streamed results
+* cleanup resources
+
+---
+
+## LeanFFI Properties
 
 ```text
-/root/mycode/Pantograph is immutable
+LeanFFI Instance
+    ↕
+One OS Process
+    ↕
+One Lean Runtime
 ```
-
----
-
-## 6.5 Git Constraint
-
-Allowed only:
-
-* add / commit / push / status
-
-Forbidden:
-
-* all history inspection commands
-
----
-
-# 7. LeanFFI System
-
-Each instance:
-
-* OS process isolated
-* executes 10 `.lean` files
-* independent memory space
-* streams results immediately
-* no shared state
 
 ---
 
@@ -229,144 +391,233 @@ Each instance:
 
 Responsibilities:
 
-* spawn 10,000 processes
-* track minimal metadata only
-* no long-term state storage
-* crash isolation & restart
+* create LeanFFI instances
+* destroy instances
+* restart failed instances
+* track minimal metadata
 
 ---
 
-# 9. Scheduler / Router (Stateless Core)
+## Scaling Target
 
-Policies:
+```text
+10000 instances
+```
+
+---
+
+## State Restriction
+
+Forbidden:
+
+* execution history storage
+* large metadata caches
+* retained outputs
+
+---
+
+# 9. Scheduler
+
+## Supported Policies
 
 * ROUND_ROBIN
 * LEAST_LOAD
 * AFFINITY
 * DAG_AWARE
 
-Rules:
+---
 
-* no unbounded state
-* streaming dispatch only
-* no history retention
+## Scheduler Rules
+
+Must:
+
+* dispatch tasks
+* maintain bounded state
+* stream outputs
+
+Must not:
+
+* accumulate results
+* keep historical execution records
 
 ---
 
 # 10. CMake Project Manager
 
-Acts as:
+Minimum Version:
 
-* build system
-* runtime orchestrator
-* execution controller
-* requirement loader
-
-Targets:
-
-* spawn_10000_instances
-* run_time_bounded_simulation
-* memory_check
-* validate_requirements
-* monitor_deadline
+```text
+CMake >= 3.25
+```
 
 ---
 
-# 11. Requirement Engine (Git-driven)
+## Build Model
 
-Loads:
+Only:
 
 ```text
-/Pantograph.requirements/
+Out-of-source build
 ```
 
-Responsibilities:
+Example:
 
-* parse requirements
-* enforce constraints
-* convert into scheduler rules
-* validate compliance
+```bash
+mkdir build
+cd build
+cmake ..
+cmake --build .
+```
+
+---
+
+## Required Targets
+
+### Runtime
+
+```text
+spawn_10000_instances
+run_time_bounded_simulation
+memory_check
+monitor_deadline
+```
+
+### Validation
+
+```text
+validate_requirements
+validate_runtime
+validate_isolation
+validate_memory
+validate_all
+```
+
+### Reporting
+
+```text
+report_runtime
+report_memory
+report_scaling
+report_all
+```
+
+---
+
+# 11. Evidence-Driven Evolution
+
+## Fundamental Rule
+
+```text
+No evidence → No change
+```
+
+---
+
+## Evidence Sources
+
+Real repository data only.
+
+Examples:
+
+* Lean source files
+* runtime execution
+* validation outputs
+* coverage reports
+
+---
+
+## Forbidden
+
+* mock evidence
+* fabricated metrics
+* invented grammar
+* invented AST nodes
+* synthetic validation
 
 ---
 
 # 12. Execution Pipeline
 
+## Phase 0
+
+Requirement Loading
+
+## Phase 1
+
+Pantograph Analysis (read-only)
+
+## Phase 2
+
+Evidence Collection
+
+## Phase 3
+
+Gap Analysis
+
+## Phase 4
+
+Design
+
+## Phase 5
+
+Implementation (external layer only)
+
+## Phase 6
+
+Validation
+
+## Phase 7
+
+Runtime Testing
+
+## Phase 8
+
+Scaling Verification
+
+## Phase 9
+
+Memory Verification
+
+## Phase 10
+
+Logging
+
+## Phase 11
+
+Git Commit
+
+## Phase 12
+
+Final Validation
+
 ---
 
-## Phase 0 — Requirement Load
+# 13. Observability
 
-* load Git-tracked requirements
-
----
-
-## Phase 1 — Analysis (READ ONLY)
-
-* scan Pantograph source
-* extract structure + FFI graph
-
----
-
-## Phase 2 — Externalization
-
-* build LeanFFI system outside source tree
-
----
-
-## Phase 3 — Scaling
-
-* spawn 10,000 instances
-
----
-
-## Phase 4 — Execution
-
-* 100,000 evaluations
-* streaming results only
-
----
-
-## Phase 5 — Validation
-
-* time check
-* memory check
-* requirement compliance
-
----
-
-## Phase 6 — Logging + Git Commit
-
-* generate logs
-* commit results
-
----
-
-# 13. Observability Layer
-
-Allowed:
+### Allowed
 
 * file logs
-* external telemetry
-* streaming metrics
+* reports
+* telemetry streams
+* external monitoring
 
-Forbidden:
+### Forbidden
 
-* in-memory dashboards
-* accumulation buffers
+* unbounded in-memory dashboards
+* retained runtime state
 
 ---
 
 # 14. Success Criteria
 
----
+## Functional
 
-## 14.1 Functional
-
-* 10,000 LeanFFI instances run
-* 100,000 evaluations complete
+* 10,000 LeanFFI instances created
+* 100,000 evaluations completed
 
 ---
 
-## 14.2 Time
+## Runtime
 
 ```text
 < 5 hours
@@ -374,7 +625,7 @@ Forbidden:
 
 ---
 
-## 14.3 Memory
+## Memory
 
 ```text
 M(t) ≈ M(0)
@@ -382,65 +633,73 @@ M(t) ≈ M(0)
 
 ---
 
-## 14.4 Requirement Compliance
+## Isolation
 
-* all constraints enforced from Git requirements
-* no runtime-generated requirements
-
----
-
-## 14.5 Source Integrity
-
-* Pantograph unchanged forever
+* no cross-instance contamination
+* no shared runtime state
 
 ---
 
-## 14.6 Audit Integrity
+## Source Integrity
 
-* every change has:
+Pantograph unchanged.
 
-  * evidence
-  * log file
-  * Git commit
+---
+
+## Git Compliance
+
+Only approved commands used.
+
+---
+
+## Audit Compliance
+
+Every change is:
+
+* evidence-backed
+* validated
+* logged
+* committed
 
 ---
 
 # 15. Failure Conditions
 
-System FAILS if:
+System fails if:
 
-* execution exceeds 5 hours
-* memory grows with instances
-* source is modified
-* missing logs or evidence
+* runtime exceeds 5 hours
+* memory grows with workload
+* source tree modified
+* evidence missing
+* logs missing
+* validation missing
 * forbidden Git commands used
-* <100,000 evaluations completed
+* fewer than 100,000 evaluations completed
 
 ---
 
-# 16. Optional Extensions
+# 16. Optional Future Extensions
 
 * distributed cluster execution
-* Kubernetes LeanFFI fleet
-* formal verification of requirements
-* DAG-based proof planner
-* cross-instance optimization graph
-* GPU-assisted proof search
+* Kubernetes orchestration
+* remote worker pools
+* proof-search acceleration
+* formal verification integration
+* cross-machine LeanFFI scheduling
 
 ---
 
-# FINAL SUMMARY
+# Final Definition
 
 This system defines:
 
-> A **fully immutable-source, Git-governed, evidence-driven, log-audited, stateless-scheduler, 10,000-instance Lean execution engine**
+> A **read-only Pantograph-based, Git-governed, evidence-driven, CMake-managed, multi-instance LeanFFI execution platform**
 
 with:
 
-* strict isolation (LeanFFI)
-* strict time bound (< 5 hours)
-* strict memory bound (constant C++ memory)
-* strict forward-only Git model
-* strict read-only upstream kernel (/Pantograph)
-
-
+* 10,000 isolated LeanFFI processes
+* 100,000 Lean evaluations
+* execution time under 5 hours
+* constant-memory orchestration
+* immutable Pantograph source tree
+* mandatory evidence, validation, logging, and Git-audited evolution workflow.
