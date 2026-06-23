@@ -1,146 +1,95 @@
-
-# Evolution Task Spec
+# Evolution Task Spec (Full Final System)
 
 ---
 
-# 0. Source System (READ-ONLY)
+# 0. System Identity
 
-```text id="src"
+This system defines a:
+
+> **non-invasive, evidence-driven, Git-audited, multi-instance Lean execution engine**
+
+It transforms Pantograph into a:
+
+* 10,000-instance LeanFFI execution platform
+* fully isolated OS-level compute system
+* stateless C++ orchestrator
+* strict time + memory bounded system
+* forward-only Git evolution environment
+* log-driven audit machine
+
+---
+
+# 1. Source System (IMMUTABLE KERNEL)
+
+```text
 /root/mycode/Pantograph
 ```
 
-### Absolute rule:
+### Hard Constraints:
 
-> This directory is **immutable forever**
+* READ ONLY forever
+* no modification
+* no patching
+* no injection
+* no build-time writes
 
-* No modification
-* No patching
-* No rewriting
-* No build-time or runtime writes
-
-It is a **frozen reference kernel**
-
----
-
-# 1. Mission
-
-Transform Pantograph into:
-
-> A **CMake-orchestrated, multi-instance LeanFFI execution engine**
-> operating as a **non-invasive external evolution layer**
-
-Capabilities:
-
-* 10,000 isolated LeanFFI processes
-* 100,000 `.lean` evaluations
-* < 5 hours total execution
-* zero memory growth in C++ orchestrator
-* forward-only Git system
-* read-only upstream source
+Pantograph is a **frozen reference kernel**
 
 ---
 
-# 2. Global System Architecture
+# 2. External Evolution Layer (ALL CHANGES LIVE HERE)
 
-```text id="arch"
-[ /root/mycode/Pantograph ]   (READ ONLY)
-              ↓
-     analysis / introspection only
-              ↓
-[ External Evolution Layer ]
-   (/Pantograph.ext/, /runtime/, /cmake/)
-              ↓
-[CMake Project Manager]
-              ↓
-[Instance Manager]
-              ↓
-[Scheduler / Router]
-              ↓
-[LeanFFI × 10,000 OS processes]
-              ↓
-[Lean runtime execution]
-              ↓
-[streamed results only]
+```text
+/Pantograph.ext/
+/runtime/
+/scheduler/
+/cmake/
+/evolution_logs/
+```
+
+Contains:
+
+* LeanFFI system
+* scheduler
+* instance manager
+* CMake orchestration
+* generated artifacts
+* logs + evidence system
+
+---
+
+# 3. Requirement System (Git-Managed Truth Layer)
+
+## 3.1 Requirement Repository
+
+```text
+/root/mycode/Pantograph.requirements/
 ```
 
 ---
 
-# 3. Hard Global Constraints
+## 3.2 Requirement Role
+
+Defines system constraints:
+
+* time (< 5 hours)
+* memory (constant)
+* scale (10,000 instances)
+* isolation rules
+* scheduler policies
 
 ---
 
-## 3.1 Scale Constraint
+## 3.3 Git Requirement Rules
 
-```text id="scale"
-10,000 LeanFFI instances
-× 10 .lean files each
-= 100,000 evaluations
-```
-
----
-
-## 3.2 Time Constraint (CRITICAL)
-
-```text id="time"
-T_total < 5 hours
-```
-
-Must include:
-
-* spawn time
-* scheduling
-* execution
-* cleanup
-
-Minimum throughput:
-
-> ≥ 6 evaluations/sec sustained
-
----
-
-## 3.3 Memory Constraint (CRITICAL)
-
-C++ main process MUST NOT grow:
-
-```text id="mem"
-∀t: M(t) ≤ M(0) + ε
-```
-
-Rules:
-
-* no accumulation buffers
-* no stored results
-* no history retention
-* streaming-only design
-
----
-
-## 3.4 Source Integrity Constraint (CRITICAL NEW)
-
-```text id="src_lock"
-/root/mycode/Pantograph is immutable
-```
-
-### Forbidden:
-
-* file edits
-* patching
-* injection
-* in-place refactoring
-* build system writes into source tree
-
----
-
-## 3.5 Git Constraint (STRICT)
-
-### Allowed:
+Allowed:
 
 * git add
 * git commit
 * git push
 * git status
 
-### Forbidden:
+Forbidden:
 
 * git log
 * git show
@@ -148,78 +97,146 @@ Rules:
 * git reflog
 * git shortlog
 
-System is **forward-only evolution**
-
 ---
 
-# 4. Core System Components
+# 4. Logging & Audit System (NEW CORE LAYER)
 
----
-
-## 4.1 CMake Project Manager
-
-Acts as:
-
-* build system
-* runtime orchestrator
-* evolution controller
-* simulation runner
-
-Key targets:
-
-* spawn_10000_instances
-* run_time_bounded_simulation
-* memory_check
-* monitor_deadline
-* adaptive_throttle
-
----
-
-## 4.2 External Evolution Layer (NEW CORE)
-
-All modifications exist here:
-
-```text id="ext"
-/Pantograph.ext/
-/runtime/
-/cmake/
-/scheduler/
+```text
+/evolution_logs/
 ```
 
-Contains:
+Every action MUST generate:
 
-* LeanFFI implementation
-* scheduler
-* instance manager
-* routing layer
-* analysis outputs
+* timestamped log file
+* evidence reference
+* validation result
+* Git commit association
 
 ---
 
-## 4.3 LeanFFI (Atomic Execution Unit)
+## Log Rule
+
+Every system mutation must follow:
+
+```text
+Evidence → Change → Log → Git Commit → Validation
+```
+
+---
+
+# 5. Core Architecture
+
+```text
+[ /root/mycode/Pantograph ] (READ ONLY)
+               ↓
+      Evidence + Analysis Layer
+               ↓
+   Requirements (Git-controlled truth)
+               ↓
+[CMake Project Manager]
+               ↓
+[External Evolution Layer]
+               ↓
+[Instance Manager]
+               ↓
+[Scheduler / Router]
+               ↓
+[LeanFFI × 10,000 processes]
+               ↓
+[Lean runtime execution]
+               ↓
+[Streaming results only]
+```
+
+---
+
+# 6. Global Constraints
+
+---
+
+## 6.1 Scale Constraint
+
+```text
+10,000 LeanFFI instances
+× 10 .lean files
+= 100,000 evaluations
+```
+
+---
+
+## 6.2 Time Constraint (CRITICAL)
+
+```text
+T_total < 5 hours
+```
+
+Minimum throughput:
+
+> ≥ 6 evaluations/sec sustained
+
+---
+
+## 6.3 Memory Constraint (CRITICAL)
+
+C++ main process must remain constant:
+
+```text
+M(t) ≤ M(0) + ε
+```
+
+Rules:
+
+* no accumulation
+* no caching
+* no history storage
+* streaming only
+
+---
+
+## 6.4 Source Integrity Constraint (CRITICAL)
+
+```text
+/root/mycode/Pantograph is immutable
+```
+
+---
+
+## 6.5 Git Constraint
+
+Allowed only:
+
+* add / commit / push / status
+
+Forbidden:
+
+* all history inspection commands
+
+---
+
+# 7. LeanFFI System
 
 Each instance:
 
-* OS process (fully isolated)
-* independent Lean runtime
-* executes 10 `.lean` files sequentially
+* OS process isolated
+* executes 10 `.lean` files
+* independent memory space
 * streams results immediately
-* no internal buffering
+* no shared state
 
 ---
 
-## 4.4 Instance Manager
+# 8. Instance Manager
 
-Manages:
+Responsibilities:
 
-* 10,000 processes
-* lifecycle (spawn/kill/restart)
-* minimal metadata only
-* no historical accumulation
+* spawn 10,000 processes
+* track minimal metadata only
+* no long-term state storage
+* crash isolation & restart
 
 ---
 
-## 4.5 Scheduler / Router (Stateless Core)
+# 9. Scheduler / Router (Stateless Core)
 
 Policies:
 
@@ -228,73 +245,102 @@ Policies:
 * AFFINITY
 * DAG_AWARE
 
-Properties:
+Rules:
 
-* stateless or bounded state only
-* no memory growth
+* no unbounded state
 * streaming dispatch only
+* no history retention
 
 ---
 
-## 4.6 LeanFFI Layer
+# 10. CMake Project Manager
 
-Replaces direct execution coupling:
+Acts as:
 
-```text id="ffi"
-Pantograph → LeanFFI → Scheduler → External system → Streamed response
+* build system
+* runtime orchestrator
+* execution controller
+* requirement loader
+
+Targets:
+
+* spawn_10000_instances
+* run_time_bounded_simulation
+* memory_check
+* validate_requirements
+* monitor_deadline
+
+---
+
+# 11. Requirement Engine (Git-driven)
+
+Loads:
+
+```text
+/Pantograph.requirements/
 ```
 
+Responsibilities:
+
+* parse requirements
+* enforce constraints
+* convert into scheduler rules
+* validate compliance
+
 ---
 
-## 4.7 Evolution Pipeline Engine
+# 12. Execution Pipeline
 
-### Phase 1 — Analysis
+---
 
-* read-only scan of `/root/mycode/Pantograph`
-* extract FFI graph
+## Phase 0 — Requirement Load
 
-### Phase 2 — Externalization
+* load Git-tracked requirements
 
-* build external LeanFFI layer
-* no source modification
+---
 
-### Phase 3 — Scale Enablement
+## Phase 1 — Analysis (READ ONLY)
+
+* scan Pantograph source
+* extract structure + FFI graph
+
+---
+
+## Phase 2 — Externalization
+
+* build LeanFFI system outside source tree
+
+---
+
+## Phase 3 — Scaling
 
 * spawn 10,000 instances
 
-### Phase 4 — Execution
+---
+
+## Phase 4 — Execution
 
 * 100,000 evaluations
-* streaming-only processing
-
-### Phase 5 — Optimization
-
-* scheduler tuning
-* throughput stabilization
+* streaming results only
 
 ---
 
-# 5. Execution Model
+## Phase 5 — Validation
 
-```text id="exec"
-Pantograph (read-only)
-      ↓
-CMake orchestration
-      ↓
-InstanceManager spawns 10,000 LeanFFI processes
-      ↓
-Scheduler distributes tasks
-      ↓
-Lean executes .lean files
-      ↓
-Results streamed immediately
-      ↓
-Main process discards all data
-```
+* time check
+* memory check
+* requirement compliance
 
 ---
 
-# 6. Observability (External Only)
+## Phase 6 — Logging + Git Commit
+
+* generate logs
+* commit results
+
+---
+
+# 13. Observability Layer
 
 Allowed:
 
@@ -305,105 +351,96 @@ Allowed:
 Forbidden:
 
 * in-memory dashboards
-* aggregation buffers
-* runtime history storage
+* accumulation buffers
 
 ---
 
-# 7. Success Criteria
+# 14. Success Criteria
 
 ---
 
-## 7.1 Functional Success
+## 14.1 Functional
 
-* [ ] 10,000 LeanFFI instances spawn successfully
-* [ ] 100,000 `.lean` evaluations completed
-* [ ] zero interference across instances
+* 10,000 LeanFFI instances run
+* 100,000 evaluations complete
 
 ---
 
-## 7.2 Memory Success (CRITICAL)
+## 14.2 Time
 
-```text id="mem_success"
+```text
+< 5 hours
+```
+
+---
+
+## 14.3 Memory
+
+```text
 M(t) ≈ M(0)
 ```
 
 ---
 
-## 7.3 Time Success (CRITICAL)
+## 14.4 Requirement Compliance
 
-```text id="time_success"
-T_total < 5 hours
-```
-
-* ≥ 6 evaluations/sec sustained
+* all constraints enforced from Git requirements
+* no runtime-generated requirements
 
 ---
 
-## 7.4 Isolation Success
+## 14.5 Source Integrity
 
-* no shared state across instances
-* full process-level isolation verified
-
----
-
-## 7.5 Git Success
-
-* only allowed commands used
-* no history inspection ever executed
+* Pantograph unchanged forever
 
 ---
 
-## 7.6 Source Integrity Success (NEW CRITICAL)
+## 14.6 Audit Integrity
 
-* `/root/mycode/Pantograph` remains unchanged at all times
+* every change has:
+
+  * evidence
+  * log file
+  * Git commit
 
 ---
 
-# 8. Failure Conditions
+# 15. Failure Conditions
 
 System FAILS if:
 
-* execution > 5 hours
-* memory grows with instance count
-* scheduler accumulates state
-* source directory modified
-* fewer than 100,000 evaluations complete
-* throughput < 6 eval/sec
-* forbidden git commands executed
+* execution exceeds 5 hours
+* memory grows with instances
+* source is modified
+* missing logs or evidence
+* forbidden Git commands used
+* <100,000 evaluations completed
 
 ---
 
-# 9. Optional Extensions
+# 16. Optional Extensions
 
-* distributed multi-node LeanFFI cluster
-* Kubernetes orchestration layer
-* GPU-assisted proof search
-* checkpointing (external only)
+* distributed cluster execution
+* Kubernetes LeanFFI fleet
+* formal verification of requirements
+* DAG-based proof planner
 * cross-instance optimization graph
-* DAG-based proof planning engine
+* GPU-assisted proof search
 
 ---
 
-# Final System Summary
+# FINAL SUMMARY
 
-This system defines a:
+This system defines:
 
-> **non-invasive, forward-only, memory-bounded, time-constrained, massively parallel Lean execution engine**
+> A **fully immutable-source, Git-governed, evidence-driven, log-audited, stateless-scheduler, 10,000-instance Lean execution engine**
 
 with:
 
-* 10,000 isolated LeanFFI processes
-* 100,000 evaluations in < 5 hours
-* zero mutation of `/root/mycode/Pantograph`
-* zero memory growth in orchestrator
-* strict Git discipline
+* strict isolation (LeanFFI)
+* strict time bound (< 5 hours)
+* strict memory bound (constant C++ memory)
+* strict forward-only Git model
+* strict read-only upstream kernel (/Pantograph)
 
----
-
-If you want next step, I can generate:
-
-* a **real CMake + external overlay repository layout**
-* or a **10,000-process Linux scaling blueprint (ulimit + kernel tuning)**
-* or a **production-grade LeanFFI dispatcher implementation (C++ + IPC)**
 
