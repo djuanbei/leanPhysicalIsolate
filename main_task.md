@@ -4,9 +4,9 @@
 
 Reference system: Pantograph
 
-Reference source tree:
+Root source (immutable):
 
-```text
+```text id="root"
 /root/mycode/Pantograph
 ```
 
@@ -14,68 +14,60 @@ Reference source tree:
 
 # 0. System Identity
 
-This system defines a:
+This system defines:
 
-> **Non-invasive, evidence-driven, Git-audited, multi-instance LeanFFI execution platform**
+> A **non-invasive, evidence-driven, Git-audited, semantically equivalent Lean execution engine** built around massive parallelism via LeanFFI.
 
-that transforms Pantograph into a:
+It transforms Pantograph into:
 
-* massively parallel Lean execution engine
-* process-isolated Lean runtime platform
-* stateless orchestration system
-* evidence-driven evolution system
-* reproducible CMake-managed infrastructure
+* a 10,000-instance execution system
+* a Lean-equivalent computation layer
+* a stateless orchestration architecture
+* an evidence-driven evolution framework
+* a reproducible CMake-managed system
 
 ---
 
 # 1. Source System (Immutable Kernel)
 
-Reference repository:
-
-```text
+```text id="src"
 /root/mycode/Pantograph
 ```
 
-## Source Integrity Rules
+## Rules
 
 Pantograph is a frozen upstream dependency.
 
 ### Forbidden
 
-* modifying source files
-* patching files
-* rewriting files
-* code injection
-* generated outputs inside source tree
-* build-time writes into source tree
+* modifying files
+* patching
+* rewriting
+* injecting code
+* writing build artifacts into source tree
 
 ### Allowed
 
 * read
-* scan
-* parse
 * analyze
+* parse
 * index
 * build against
 
 ### Invariant
 
-```text
+```text id="inv_src"
 Pantograph(t) == Pantograph(0)
 ```
-
-for all execution times.
 
 ---
 
 # 2. External Evolution Layer
 
-All evolution occurs outside Pantograph.
+All system evolution MUST occur outside the source tree:
 
-Example layout:
-
-```text
-Pantograph.ext/
+```text id="ext"
+/Pantograph.ext/
 runtime/
 scheduler/
 cmake/
@@ -90,9 +82,7 @@ requirements/
 
 ---
 
-# 3. Requirement System
-
-## 3.1 Requirement Authority
+# 3. Requirement System (Git-Managed Logical Layer)
 
 Requirements define:
 
@@ -106,15 +96,11 @@ Requirements define:
 * audit constraints
 * source integrity constraints
 
-Requirements are version-controlled artifacts and participate in the normal evolution workflow.
-
 ---
 
-## 3.2 Requirement Organization
+## Requirement Structure
 
-Example structure:
-
-```text
+```text id="req"
 requirements/
     core/
     ffi/
@@ -125,85 +111,33 @@ requirements/
 
 ---
 
-## 3.3 Requirement Categories
+## Requirement Change Policy
 
-### Core
+Every change MUST follow:
 
-* scale
-* memory
-* runtime
-* isolation
-
-### FFI
-
-* LeanFFI lifecycle
-* communication
-* routing
-
-### Scheduler
-
-* dispatch policy
-* load balancing
-* throttling
-
-### System
-
-* source integrity
-* Git policy
-* logging policy
-
-### Performance
-
-* throughput
-* latency
-* scaling
-
----
-
-## 3.4 Requirement Change Policy
-
-Every requirement modification must follow:
-
-```text
-Edit
-→ Validate
-→ Log
-→ Git Add
-→ Git Commit
-→ Git Push
+```text id="flow_req"
+Edit → Validate → Log → git add → git commit → git push
 ```
 
 ---
 
-## 3.5 Requirement Validation
+## Requirement Enforcement
 
-Requirements must be:
-
-* internally consistent
-* machine-readable
-* auditable
-* reproducible
-* validation-backed
-
----
-
-## 3.6 Requirement Enforcement
-
-Requirements must be enforced by:
+Enforced by:
 
 * CMake Project Manager
 * Instance Manager
 * Scheduler
-* LeanFFI Runtime
-* Validation Framework
+* LeanFFI runtime
+* validation framework
 
 ---
 
 # 4. Git Governance
 
-## Allowed Commands
+## Allowed
 
-```bash
+```bash id="git_ok"
 git add
 git commit
 git push
@@ -212,9 +146,9 @@ git status
 
 ---
 
-## Forbidden Commands
+## Forbidden
 
-```bash
+```bash id="git_no"
 git log
 git show
 git blame
@@ -224,58 +158,41 @@ git shortlog
 
 ---
 
-## Forward-Only Evolution Rule
+## Role
 
-Git is used as:
+Git is:
 
-* storage
-* synchronization
 * audit ledger
+* state synchronizer
+* versioned truth system
 
-Git is NOT used for:
+Not:
 
-* history inspection
-* commit analysis
-* blame tracking
+* history inspection tool
 
 ---
 
-# 5. Logging & Audit Layer
+# 5. Logging & Audit System
 
-Directory:
-
-```text
-evolution_logs/
+```text id="logs"
+/evolution_logs/
 ```
 
----
+Each change MUST generate:
 
-## Mandatory Logging
-
-Every evolution event must generate:
-
-* timestamp
-* component
-* evidence
+* timestamped log
+* component type
+* evidence reference
 * validation result
 * affected files
-* reason
-* next action
+* reasoning trace
 
 ---
 
 ## Traceability Chain
 
-Every change must satisfy:
-
-```text
-Evidence
-→ Gap
-→ Design
-→ Implementation
-→ Validation
-→ Log
-→ Git Commit
+```text id="trace"
+Evidence → Gap → Design → Implementation → Validation → Log → Git Commit
 ```
 
 ---
@@ -284,105 +201,134 @@ Evidence
 
 Forbidden:
 
-* change without evidence
-* change without log
-* change without validation
-* change without Git commit
+* unlogged changes
+* unvalidated changes
+* uncommitted changes
+* evidence-less changes
 
 ---
 
 # 6. Global Constraints
 
-## Scale Constraint
+---
 
-```text
+## Scale
+
+```text id="scale"
 10,000 LeanFFI instances
 × 10 Lean files
-=
-100,000 evaluations
+= 100,000 evaluations
 ```
 
 ---
 
-## Runtime Constraint
+## Time Constraint
 
-```text
-Total Runtime < 5 hours
+```text id="time"
+< 5 hours total
 ```
 
-Includes:
+Minimum throughput:
 
-* startup
-* scheduling
-* execution
-* cleanup
-* validation
-
-Required throughput:
-
-```text
-≥ 6 evaluations/sec
+```text id="throughput"
+≥ 6 eval/sec
 ```
 
 ---
 
 ## Memory Constraint
 
-Main orchestration process:
-
-```text
+```text id="mem"
 M(t) ≤ M(0) + ε
 ```
 
-Where ε is bounded.
-
-### Forbidden
-
-* unbounded queues
-* retained evaluation history
-* result accumulation
-* persistent runtime caches
+No accumulation allowed.
 
 ---
 
 ## Isolation Constraint
 
-Every LeanFFI instance:
+Each LeanFFI instance:
 
-* independent process
-* independent memory space
+* independent OS process
 * independent Lean runtime
-* no shared mutable state
+* no shared state
 
 ---
 
-# 7. LeanFFI Architecture
-
-## Core Principle
-
-Each LeanFFI object represents:
-
-> One physical isolated Lean execution environment
+# 7. LeanFFI System
 
 ---
 
-## LeanFFI Responsibilities
+## 7.1 Semantic Requirement (CRITICAL)
 
-* load Lean runtime
-* execute Lean requests
-* return streamed results
-* cleanup resources
+LeanFFI MUST be semantically equivalent to:
+
+```bash id="lean"
+lean
+```
+
+Formally:
+
+```text id="eq"
+∀P: LeanFFI(P) == lean(P)
+```
+
+Including:
+
+* parsing
+* elaboration
+* kernel checks
+* errors
+* warnings
+* module resolution
 
 ---
 
-## LeanFFI Properties
+## 7.2 Execution Interfaces
 
-```text
-LeanFFI Instance
-    ↕
-One OS Process
-    ↕
-One Lean Runtime
+### File execution
+
+```cpp id="file"
+Result run_file(path)
+```
+
+---
+
+### Source execution
+
+```cpp id="src"
+Result run_source(code)
+```
+
+---
+
+## 7.3 Evolution Interfaces
+
+LeanFFI supports:
+
+* load source string
+* load file
+* create goal
+* remove goal
+* add theorem
+* add lemma
+* add definition
+* add structure
+* add class
+* add instance
+* snapshot / restore / fork
+
+These must remain Lean-semantic compatible.
+
+---
+
+## 7.4 Isolation Rule
+
+No cross-instance leakage:
+
+```text id="iso"
+LeanFFI_A ≠ LeanFFI_B
 ```
 
 ---
@@ -391,235 +337,130 @@ One Lean Runtime
 
 Responsibilities:
 
-* create LeanFFI instances
-* destroy instances
-* restart failed instances
-* track minimal metadata
-
----
-
-## Scaling Target
-
-```text
-10000 instances
-```
-
----
-
-## State Restriction
-
-Forbidden:
-
-* execution history storage
-* large metadata caches
-* retained outputs
+* spawn 10,000 LeanFFI processes
+* manage lifecycle
+* minimal metadata only
+* no history storage
 
 ---
 
 # 9. Scheduler
 
-## Supported Policies
+Policies:
 
 * ROUND_ROBIN
 * LEAST_LOAD
 * AFFINITY
 * DAG_AWARE
 
----
+Rules:
 
-## Scheduler Rules
-
-Must:
-
-* dispatch tasks
-* maintain bounded state
-* stream outputs
-
-Must not:
-
-* accumulate results
-* keep historical execution records
+* stateless or bounded state only
+* streaming execution only
+* no accumulation
 
 ---
 
 # 10. CMake Project Manager
 
-Minimum Version:
+Minimum:
 
-```text
-CMake >= 3.25
+```text id="cmake"
+CMake ≥ 3.25
 ```
 
 ---
 
-## Build Model
-
-Only:
-
-```text
-Out-of-source build
-```
-
-Example:
-
-```bash
-mkdir build
-cd build
-cmake ..
-cmake --build .
-```
-
----
-
-## Required Targets
+## Targets
 
 ### Runtime
 
-```text
-spawn_10000_instances
-run_time_bounded_simulation
-memory_check
-monitor_deadline
-```
+* spawn_10000_instances
+* run_time_bounded_simulation
+* memory_check
+* monitor_deadline
 
 ### Validation
 
-```text
-validate_requirements
-validate_runtime
-validate_isolation
-validate_memory
-validate_all
-```
+* validate_requirements
+* validate_runtime
+* validate_isolation
+* validate_memory
+* validate_all
 
 ### Reporting
 
-```text
-report_runtime
-report_memory
-report_scaling
-report_all
-```
+* report_runtime
+* report_memory
+* report_scaling
+* report_all
 
 ---
 
-# 11. Evidence-Driven Evolution
+# 11. Evidence-Driven System
 
-## Fundamental Rule
-
-```text
-No evidence → No change
-```
-
----
-
-## Evidence Sources
-
-Real repository data only.
-
-Examples:
-
-* Lean source files
-* runtime execution
-* validation outputs
-* coverage reports
+No change without evidence.
 
 ---
 
 ## Forbidden
 
-* mock evidence
-* fabricated metrics
-* invented grammar
+* mock data
+* synthetic grammar
 * invented AST nodes
-* synthetic validation
+* fake metrics
 
 ---
 
 # 12. Execution Pipeline
 
-## Phase 0
+---
 
-Requirement Loading
-
-## Phase 1
-
-Pantograph Analysis (read-only)
-
-## Phase 2
-
-Evidence Collection
-
-## Phase 3
-
-Gap Analysis
-
-## Phase 4
-
-Design
-
-## Phase 5
-
-Implementation (external layer only)
-
-## Phase 6
-
-Validation
-
-## Phase 7
-
-Runtime Testing
-
-## Phase 8
-
-Scaling Verification
-
-## Phase 9
-
-Memory Verification
-
-## Phase 10
-
-Logging
-
-## Phase 11
-
-Git Commit
-
-## Phase 12
-
-Final Validation
+Phase 0: Requirements load
+Phase 1: Pantograph analysis (read-only)
+Phase 2: Evidence collection
+Phase 3: Gap analysis
+Phase 4: Design
+Phase 5: Implementation (external only)
+Phase 6: Validation
+Phase 7: Runtime testing
+Phase 8: Scaling verification
+Phase 9: Memory verification
+Phase 10: Logging
+Phase 11: Git commit
+Phase 12: Final validation
 
 ---
 
 # 13. Observability
 
-### Allowed
+Allowed:
 
-* file logs
+* logs
 * reports
-* telemetry streams
-* external monitoring
+* external telemetry
 
-### Forbidden
+Forbidden:
 
-* unbounded in-memory dashboards
+* persistent in-memory dashboards
 * retained runtime state
 
 ---
 
 # 14. Success Criteria
 
+---
+
 ## Functional
 
-* 10,000 LeanFFI instances created
-* 100,000 evaluations completed
+* 10,000 LeanFFI instances
+* 100,000 evaluations
 
 ---
 
 ## Runtime
 
-```text
+```text id="runtime"
 < 5 hours
 ```
 
@@ -627,8 +468,18 @@ Final Validation
 
 ## Memory
 
-```text
+```text id="memok"
 M(t) ≈ M(0)
+```
+
+---
+
+## Semantic Correctness
+
+LeanFFI must match:
+
+```text id="sem"
+lean CLI semantics exactly
 ```
 
 ---
@@ -636,30 +487,17 @@ M(t) ≈ M(0)
 ## Isolation
 
 * no cross-instance contamination
-* no shared runtime state
 
 ---
 
-## Source Integrity
+## Audit
 
-Pantograph unchanged.
+* every change has:
 
----
-
-## Git Compliance
-
-Only approved commands used.
-
----
-
-## Audit Compliance
-
-Every change is:
-
-* evidence-backed
-* validated
-* logged
-* committed
+  * evidence
+  * log
+  * git commit
+  * validation
 
 ---
 
@@ -667,25 +505,24 @@ Every change is:
 
 System fails if:
 
-* runtime exceeds 5 hours
-* memory grows with workload
-* source tree modified
-* evidence missing
+* runtime > 5 hours
+* memory grows
+* Pantograph modified
+* Lean semantics diverge from `lean`
 * logs missing
-* validation missing
-* forbidden Git commands used
-* fewer than 100,000 evaluations completed
+* evidence missing
+* forbidden git commands used
+* <100,000 evaluations completed
 
 ---
 
-# 16. Optional Future Extensions
+# 16. Optional Extensions
 
 * distributed cluster execution
 * Kubernetes orchestration
-* remote worker pools
-* proof-search acceleration
-* formal verification integration
-* cross-machine LeanFFI scheduling
+* formal verification of requirements
+* cross-node LeanFFI scheduling
+* proof search acceleration layer
 
 ---
 
@@ -693,13 +530,4 @@ System fails if:
 
 This system defines:
 
-> A **read-only Pantograph-based, Git-governed, evidence-driven, CMake-managed, multi-instance LeanFFI execution platform**
-
-with:
-
-* 10,000 isolated LeanFFI processes
-* 100,000 Lean evaluations
-* execution time under 5 hours
-* constant-memory orchestration
-* immutable Pantograph source tree
-* mandatory evidence, validation, logging, and Git-audited evolution workflow.
+> A **fully immutable-source, semantically equivalent Lean execution engine with 10,000 isolated LeanFFI processes, Git-audited evolution, evidence-driven development, strict memory bounds, and <5-hour execution constraint**, built on top of Pantograph without modifying it.
