@@ -78,6 +78,14 @@ public:
     Result add_instance(const std::string& class_name,
                         const std::string& term);
 
+    // Lower-level: issue a single `env.add` with the explicit
+    // (name, type, value, isTheorem) fields that the protocol expects.
+    // Used by spec §4.2 addTheorem/addLemma synthesis testing.
+    Result env_add_raw(const std::string& name,
+                       const std::string& type,
+                       const std::string& value,
+                       bool is_theorem);
+
     // ----- Snapshot / Restore / Fork (spec §15) -----
     // save returns the serialized state (opaque blob).
     Result save_state(const std::string& state_id, std::string& out_blob);

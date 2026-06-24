@@ -26,6 +26,7 @@ set(LPI_SOURCES
     ${CMAKE_SOURCE_DIR}/../src/memory_monitor.cpp
     ${CMAKE_SOURCE_DIR}/../src/pantograph_protocol.cpp
     ${CMAKE_SOURCE_DIR}/../src/json_helpers.cpp
+    ${CMAKE_SOURCE_DIR}/../src/random_test.cpp
 )
 
 add_library(lpi_core STATIC ${LPI_SOURCES})
@@ -64,6 +65,13 @@ add_executable(lpi_requirements
     ${CMAKE_SOURCE_DIR}/../requirements_main/main.cpp
 )
 target_link_libraries(lpi_requirements PRIVATE lpi_core)
+
+# spec §4.1 + §4.2: random Lean file sampling and addTheorem/addLemma
+# synthesis testing.
+add_executable(lpi_random_test
+    ${CMAKE_SOURCE_DIR}/../random_test/main.cpp
+)
+target_link_libraries(lpi_random_test PRIVATE lpi_core)
 
 # -----------------------------------------------------------------------------
 # Spec targets (CMake orchestration per spec #19)
@@ -119,6 +127,22 @@ add_custom_target(requirements_evaluate
     USES_TERMINAL
 )
 
+# spec §4.1: random Lean file test sampling
+add_custom_target(random_lean_file_test
+    COMMAND ${LPI_BIN_DIR}/lpi_random_test --repl ${LPI_WORKSPACE}/repl --seed 1 --samples 8 --file-sample
+    WORKING_DIRECTORY ${LPI_WORKSPACE}
+    COMMENT "Spec §4.1: random Lean file test sampling"
+    USES_TERMINAL
+)
+
+# spec §4.2: addTheorem/addLemma random test generation
+add_custom_target(ffi_generated_test
+    COMMAND ${LPI_BIN_DIR}/lpi_random_test --repl ${LPI_WORKSPACE}/repl --seed 1 --samples 8 --ffi-generated
+    WORKING_DIRECTORY ${LPI_WORKSPACE}
+    COMMENT "Spec §4.2: addTheorem/addLemma random test generation"
+    USES_TERMINAL
+)
+
 # aggregate CI target
 add_custom_target(lpi_full_pipeline
     DEPENDS spawn_10000_instances
@@ -129,8 +153,10 @@ add_custom_target(lpi_full_pipeline
     COMMAND ${CMAKE_COMMAND} -E echo "=== pipeline: validation done ==="
     COMMAND ${LPI_BIN_DIR}/lpi_validation --repl ${LPI_WORKSPACE}/repl --memory
     COMMAND ${LPI_BIN_DIR}/lpi_validation --repl ${LPI_WORKSPACE}/repl --benchmark
+    COMMAND ${CMAKE_COMMAND} -E echo "=== pipeline: random Lean file tests ==="
+    COMMAND ${LPI_BIN_DIR}/lpi_random_test --repl ${LPI_WORKSPACE}/repl --seed 1 --samples 8 --all
     COMMAND ${CMAKE_COMMAND} -E echo "=== pipeline: benchmarks done ==="
     WORKING_DIRECTORY ${LPI_WORKSPACE}
-    COMMENT "Full evolution pipeline: spawn -> execute -> validate -> memory -> benchmark"
+    COMMENT "Full evolution pipeline: spawn -> execute -> validate -> memory -> benchmark -> random tests"
     USES_TERMINAL
 )

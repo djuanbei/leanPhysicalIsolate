@@ -385,6 +385,19 @@ Result LeanFFI::add_instance(const std::string& class_name, const std::string& t
     return lib_add(class_name + ".inst", term, std::nullopt, "instance");
 }
 
+Result LeanFFI::env_add_raw(const std::string& name,
+                            const std::string& type,
+                            const std::string& value,
+                            bool is_theorem) {
+    std::string payload = "{\"name\":\"" + json::escape(name) +
+                          "\",\"type\":\"" + json::escape(type) +
+                          "\",\"value\":\"" + json::escape(value) +
+                          "\",\"isTheorem\":" + (is_theorem ? "true" : "false") + "}";
+    std::string req = protocol::build(protocol::cmd::kEnvAdd, payload);
+    std::string resp;
+    return exchange(req, resp);
+}
+
 Result LeanFFI::save_state(const std::string& state_id, std::string& out_blob) {
     // Real Pantograph's env.save takes a file `path`.  We treat
     // `state_id` as the path; the orchestrator passes the absolute
