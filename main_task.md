@@ -82,10 +82,6 @@ cache/
 cmake/
 ```
 
-## Hard Constraint
-
-All runtime state, logs, snapshots, and artifacts MUST remain inside this directory.
-
 ---
 
 # 3. Isolation Model
@@ -164,13 +160,11 @@ evidence/test_sampling/<timestamp>_<file_hash>.json
 
 ---
 
-## 4.2 addTheorem / addLemma Random Test Generation (NEW)
+## 4.2 addTheorem / addLemma Random Test Generation
 
 ### Purpose
 
 Generate dynamic LeanFFI test cases from real Lean code.
-
----
 
 ### Pipeline
 
@@ -200,8 +194,6 @@ addLemma(...)
 run_source(generated_snippet)
 ```
 
----
-
 ### Generation Rules
 
 * Must use symbols from file or imports
@@ -209,32 +201,11 @@ run_source(generated_snippet)
 * May use `by sorry` or extracted proof patterns
 * Must preserve semantic consistency
 
----
-
 ### Evidence Output
 
 ```text
 evidence/ffi_generated/<timestamp>_<file_hash>.json
 ```
-
-Includes:
-
-* file path
-* extracted context
-* generated theorem/lemma
-* injection type
-* kernel result
-* diagnostics
-
----
-
-### Failure Conditions
-
-* undefined symbols used
-* invalid syntax
-* kernel rejection unmanaged
-* no injection generated
-* missing evidence output
 
 ---
 
@@ -312,6 +283,51 @@ NOT CLI behavior.
 
 ---
 
+## 9.1 Pantograph Dependency Invariant (NEW)
+
+All LeanFFI functionality MUST be derived from and delegated to the immutable base system Pantograph.
+
+### Core Requirement
+
+```text
+LeanFFI functions MUST NOT reimplement any functionality already provided by Pantograph.
+```
+
+### Rules
+
+* LeanFFI is a thin orchestration layer over Pantograph
+* All semantic core operations MUST forward to Pantograph APIs
+
+### Forbidden
+
+* Reimplementing kernel / elaborator / tactic engine
+* Shadow semantics duplicating Pantograph behavior
+* Bypassing Pantograph execution paths
+
+### Allowed
+
+* Scheduling
+* isolation management
+* snapshot / fork / restore logic
+* logging and evidence generation
+* orchestration of multi-instance execution
+
+### Semantic Invariant
+
+```text
+LeanFFI(x) = Compose(Pantograph(x))
+```
+
+### Failure Condition
+
+System is invalid if:
+
+* any kernel logic is reimplemented in LeanFFI
+* Pantograph linkage is bypassed
+* execution cannot be traced back to Pantograph
+
+---
+
 ## Core Function
 
 ```text
@@ -364,7 +380,7 @@ struct GoalState {
   target_expression;
   universe_constraints;
   environment_ref;
-}
+};
 ```
 
 ---
@@ -448,6 +464,7 @@ Checks:
 * snapshot correctness
 * random Lean file execution
 * theorem/lemma generation validity
+* Pantograph dependency compliance (no duplication)
 
 ---
 
@@ -497,7 +514,7 @@ Forbidden:
 11. Memory check
 12. Semantic verification
 13. Log results
-14. Git commit (add the project related source files  and  evolution summary report to git repository)
+14. Git commit (add project files + evolution report)
 15. Final audit
 
 ---
@@ -558,6 +575,7 @@ System fails if:
 * isolation violation
 * random Lean file test not executed
 * theorem/lemma generation invalid or missing
+* LeanFFI reimplements Pantograph functionality
 
 ---
 
@@ -580,7 +598,5 @@ providing:
 * large-scale parallel validation
 * randomized Lean4 corpus execution
 * automatic addTheorem/addLemma synthesis testing
+* enforced Pantograph dependency boundary (no reimplementation of core kernel logic)
 
----
-
-If you want, I can next convert this into a **formal machine-executable spec (DSL or JSON schema + scheduler IR)** so it becomes directly compilable into an orchestration engine.
