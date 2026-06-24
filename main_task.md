@@ -497,7 +497,7 @@ Forbidden:
 11. Memory check
 12. Semantic verification
 13. Log results
-14. Git commit
+14. Git commit (add the project related source files  and  evolution summary report to git repository)
 15. Final audit
 
 ---
