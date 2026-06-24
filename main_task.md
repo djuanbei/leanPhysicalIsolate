@@ -19,6 +19,7 @@ It provides:
 * bounded-memory execution model
 * reproducible CMake orchestration
 * full filesystem-based isolation
+* randomized Lean corpus validation + theorem synthesis testing
 
 ---
 
@@ -53,7 +54,7 @@ Pantograph(t) = Pantograph(0)
 
 ---
 
-# 2. Physical Isolation Workspace (ROOT SYSTEM)
+# 2. Physical Isolation Workspace
 
 All evolution MUST occur inside:
 
@@ -61,13 +62,9 @@ All evolution MUST occur inside:
 /root/mycode/lean_physical_isolate
 ```
 
----
-
-## Workspace Structure
+## Structure
 
 ```text
-/root/mycode/lean_physical_isolate/
-
 runtime/
 instance_manager/
 scheduler/
@@ -85,17 +82,13 @@ cache/
 cmake/
 ```
 
----
-
 ## Hard Constraint
 
-```text
-ALL runtime state, logs, snapshots, and artifacts MUST remain inside lean_physical_isolate
-```
+All runtime state, logs, snapshots, and artifacts MUST remain inside this directory.
 
 ---
 
-# 3. Isolation Model (CORE PROPERTY)
+# 3. Isolation Model
 
 Each instance:
 
@@ -106,15 +99,12 @@ Each instance:
 Structure:
 
 ```text
-instance_<id>/
-  env/
-  goals/
-  logs/
-  cache/
-  snapshots/
+env/
+goals/
+logs/
+cache/
+snapshots/
 ```
-
----
 
 ## Isolation Invariant
 
@@ -123,41 +113,132 @@ instance_<id>/
 State(i) ∩ State(j) = ∅
 ```
 
-Only immutable shared artifacts are allowed.
-
 ---
 
 # 4. Requirement System
 
-Path:
+Root:
 
 ```text
 /root/mycode/lean_physical_isolate/requirements/
 ```
 
-Structure:
-
-* core/
-* runtime/
-* ffi/
-* scheduler/
-* memory/
-* validation/
-* audit/
-
----
-
-## Requirement Lifecycle
+Lifecycle:
 
 ```text
-Edit → Validate → Evidence → Log → git commit
+Edit → Validate → Evidence → Log → Git Commit
 ```
 
 ---
 
-# 5. Git Governance
+## 4.1 Random Lean File Test Sampling
 
-Git is an audit ledger only.
+### Source
+
+```text
+/root/mycode/lean4
+```
+
+### Rule
+
+Each validation cycle MUST:
+
+* randomly select `.lean` file
+* execute it via LeanFFI
+
+```text
+run_file(f) OR run_source(read(f))
+```
+
+### Constraints
+
+* deterministic seed required
+* fully reproducible
+* logged in evidence system
+
+### Evidence
+
+```text
+evidence/test_sampling/<timestamp>_<file_hash>.json
+```
+
+---
+
+## 4.2 addTheorem / addLemma Random Test Generation (NEW)
+
+### Purpose
+
+Generate dynamic LeanFFI test cases from real Lean code.
+
+---
+
+### Pipeline
+
+1. Random `.lean` file selection:
+
+```text
+/root/mycode/lean4
+```
+
+2. Extract semantic context:
+
+* imports
+* definitions
+* structures
+* theorem statements
+
+3. Generate test injection:
+
+```text
+addTheorem(...)
+addLemma(...)
+```
+
+4. Execute via LeanFFI:
+
+```cpp
+run_source(generated_snippet)
+```
+
+---
+
+### Generation Rules
+
+* Must use symbols from file or imports
+* Must remain kernel-typable
+* May use `by sorry` or extracted proof patterns
+* Must preserve semantic consistency
+
+---
+
+### Evidence Output
+
+```text
+evidence/ffi_generated/<timestamp>_<file_hash>.json
+```
+
+Includes:
+
+* file path
+* extracted context
+* generated theorem/lemma
+* injection type
+* kernel result
+* diagnostics
+
+---
+
+### Failure Conditions
+
+* undefined symbols used
+* invalid syntax
+* kernel rejection unmanaged
+* no injection generated
+* missing evidence output
+
+---
+
+# 5. Git Governance
 
 Allowed:
 
@@ -171,7 +252,7 @@ Forbidden:
 
 ```bash
 git log
-git diff (for reasoning/history)
+git diff
 git blame
 ```
 
@@ -179,27 +260,22 @@ git blame
 
 # 6. Evidence System
 
-Path:
-
 ```text
-/root/mycode/lean_physical_isolate/evidence/
+evidence/
 ```
 
 Rules:
 
-* only real runtime outputs allowed
-* no synthetic data
-* no hallucinated proofs
+* only real runtime outputs
+* no synthetic proofs
 * no fabricated benchmarks
 
 ---
 
 # 7. Logging System
 
-Path:
-
 ```text
-/root/mycode/lean_physical_isolate/evolution_logs/
+evolution_logs/
 ```
 
 Each event MUST include:
@@ -212,76 +288,42 @@ Each event MUST include:
 
 ---
 
-## Traceability Chain
-
-```text
-Evidence → Gap → Design → Implementation → Validation → Log → Git Commit
-```
-
----
-
 # 8. Global Constraints
 
-## Scale
-
-```text
-10,000 LeanFFI instances
-```
-
----
-
-## Runtime
-
-```text
-< 3 hours total
-```
-
----
-
-## Throughput
-
-```text
-≥ 6 evaluations/sec
-```
-
----
-
-## Memory
+* 10,000 LeanFFI instances
+* < 3 hours runtime
+* ≥ 6 evaluations/sec
 
 ```text
 M_active(t) ≤ M0 + ε
 ```
 
-Snapshots excluded from active memory accounting.
-
 ---
 
-# 9. LeanFFI Semantic Model (CRITICAL)
+# 9. LeanFFI Semantic Model
 
-LeanFFI must match:
+Must match Lean kernel semantics:
 
-```text
-Lean kernel semantics (elaborator + kernel + tactic engine)
-```
+* elaborator
+* kernel
+* tactic engine
 
 NOT CLI behavior.
 
 ---
 
-## Core Semantic Function
+## Core Function
 
 ```text
-(Environment × Command)
-→ (Environment × Diagnostics)
+(Environment × Command) → (Environment × Diagnostics)
 ```
 
 ---
 
-## Tactic Semantics
+## Tactic Model
 
 ```text
-(GoalState × Tactic)
-→ (GoalState × Diagnostics)
+(GoalState × Tactic) → (GoalState × Diagnostics)
 ```
 
 ---
@@ -293,7 +335,7 @@ Result run_file(path);
 Result run_source(source);
 ```
 
-Execution MUST occur inside:
+Must execute inside:
 
 ```text
 /root/mycode/lean_physical_isolate/runtime/
@@ -303,23 +345,17 @@ Execution MUST occur inside:
 
 # 11. Environment Model
 
-Stored per instance:
-
-```text
-instance_<id>/env/
-```
-
-Contains:
+Per instance:
 
 * declarations
 * imports
 * universe constraints
 * elaboration state
-* kernel state snapshot
+* kernel snapshot
 
 ---
 
-# 12. Goal System (FORMAL)
+# 12. Goal System
 
 ```cpp
 struct GoalState {
@@ -335,28 +371,22 @@ struct GoalState {
 
 # 13. Tactic Evaluation
 
-```text
-GoalState evaluate(goal, tactic)
-```
-
-Must support:
-
 * multiple subgoals
 * failure diagnostics
-* kernel-accurate behavior
+* kernel-accurate semantics
 
 ---
 
 # 14. Declaration Injection
 
-All must pass Lean kernel elaboration.
+Supported:
 
-* add_theorem
-* add_lemma
-* add_definition
-* add_structure
-* add_class
-* add_instance
+* addTheorem
+* addLemma
+* addDefinition
+* addStructure
+* addClass
+* addInstance
 
 ---
 
@@ -364,46 +394,29 @@ All must pass Lean kernel elaboration.
 
 ## Snapshot
 
-Stored at:
-
 ```text
-/root/mycode/lean_physical_isolate/snapshots/
+snapshots/
 ```
-
-Captures:
-
-* environment
-* metavariables
-* goals
-* universe constraints
-
----
 
 ## Restore
 
-```text
-restore(snapshot) = original environment
-```
-
----
+Restores exact environment state
 
 ## Fork
 
 Creates new isolated instance:
 
 ```text
-/root/mycode/lean_physical_isolate/runtime/instance_<new_id>/
+runtime/instance_<new_id>/
 ```
 
 ---
 
 # 16. Instance Manager
 
-Responsibilities:
-
-* spawn 10,000 processes
-* enforce filesystem isolation
-* lifecycle management
+* spawn 10,000 instances
+* enforce isolation
+* lifecycle control
 * cleanup
 
 ---
@@ -420,7 +433,7 @@ Constraints:
 
 * bounded memory
 * no cross-instance state
-* streaming execution only
+* streaming execution
 
 ---
 
@@ -431,17 +444,17 @@ Checks:
 * semantic correctness
 * isolation integrity
 * memory usage
-* runtime throughput
+* throughput
 * snapshot correctness
+* random Lean file execution
+* theorem/lemma generation validity
 
 ---
 
 # 19. CMake System
 
-Path:
-
 ```text
-/root/mycode/lean_physical_isolate/cmake/
+cmake/
 ```
 
 Targets:
@@ -478,12 +491,14 @@ Forbidden:
 5. Design
 6. Implement
 7. Validate
-8. Run at scale
-9. Memory check
-10. Semantic verification
-11. Log results
-12. Git commit
-13. Final audit
+8. Random Lean file execution
+9. Generate addTheorem/addLemma tests
+10. Run at scale
+11. Memory check
+12. Semantic verification
+13. Log results
+14. Git commit
+15. Final audit
 
 ---
 
@@ -493,6 +508,8 @@ Forbidden:
 
 * 10,000 LeanFFI instances
 * ≥100,000 evaluations
+* randomized Lean corpus coverage
+* theorem/lemma synthesis validation
 
 ---
 
@@ -523,7 +540,7 @@ LeanFFI ≡ Lean kernel semantics
 ## Isolation
 
 * zero cross-instance leakage
-* filesystem enforced separation
+* filesystem isolation enforced
 
 ---
 
@@ -534,12 +551,13 @@ System fails if:
 * Pantograph modified
 * runtime exceeds limit
 * memory unbounded
-* semantic mismatch with Lean kernel
+* kernel semantic mismatch
 * missing evidence/logs
-* snapshot restore inconsistency
+* snapshot inconsistency
 * fork contamination
 * isolation violation
-* evaluation target not met
+* random Lean file test not executed
+* theorem/lemma generation invalid or missing
 
 ---
 
@@ -560,6 +578,9 @@ providing:
 * bounded memory execution
 * reproducible CMake orchestration
 * large-scale parallel validation
+* randomized Lean4 corpus execution
+* automatic addTheorem/addLemma synthesis testing
 
-```
-```
+---
+
+If you want, I can next convert this into a **formal machine-executable spec (DSL or JSON schema + scheduler IR)** so it becomes directly compilable into an orchestration engine.
