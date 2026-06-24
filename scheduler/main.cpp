@@ -66,12 +66,31 @@ int main(int argc, char** argv) {
     // n is the *number of tasks*; we can dispatch more than ids.size()
     // because each instance services many tasks serially.
 
+    // A small pool of well-typed kernel-friendly problems, each
+    // chosen to exercise a different code path in Pantograph. The
+    // cycle length is the number of problems; the rest just round-robin.
+    struct Problem {
+        const char* type;
+        const char* tactic;
+    };
+    static const Problem problems[] = {
+        { "True",                                "trivial" },
+        { "True ∧ True",                         "constructor" },
+        { "False → True",                        "intro h" },
+        { "(1 : Nat) + 1 = 2",                   "rfl" },
+        { "∀ (n : Nat), n = n",                  "intro n; rfl" },
+        { "∀ (p q : Prop), p → q → p",           "intro p q hp hq; exact hp" },
+        { "Nat",                                 "0" },
+    };
+    const size_t n_probs = sizeof(problems) / sizeof(problems[0]);
+
     for (size_t i = 0; i < n; ++i) {
         Task t;
         t.id = "t" + std::to_string(i);
         t.instance_id = ids[i % ids.size()];
-        t.tactic = "intro x";
-        t.type = "True";
+        const auto& p = problems[i % n_probs];
+        t.tactic = p.tactic;
+        t.type   = p.type;
         t.dag = (policy_s == "DAG_AWARE" && i > 0) ? std::vector<std::string>{"t" + std::to_string(i - 1)} : std::vector<std::string>{};
         s.enqueue(t);
     }

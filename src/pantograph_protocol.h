@@ -8,15 +8,13 @@ namespace lpi {
 // We only implement the subset of the Pantograph REPL protocol that maps
 // to the spec's Execution API (§10) and Goal System (§12):
 //
-//   - "options set"     : configure REPL options
-//   - "goal start"      : open a new goal in an environment
-//   - "goal restore"    : restore a serialized goal state
-//   - "tactic"          : run a single tactic on a goal state
-//   - "expr synthesize" : synthesize a term
-//   - "lib add"         : inject a declaration (§14)
-//   - "save"            : snapshot (§15)
-//   - "load"            : restore
-//   - "version"         : REPL version handshake
+//   - "options.set"   : configure REPL options
+//   - "goal.start"    : open a new goal in an environment
+//   - "goal.tactic"   : run a single tactic on a goal state
+//   - "expr.echo"     : synthesize / type-check a term
+//   - "env.add"       : inject a declaration (§14)
+//   - "env.save"      : snapshot (§15)
+//   - "env.load"      : restore
 //
 // The protocol is line-delimited JSON; one request -> one response.
 namespace protocol {
@@ -29,19 +27,19 @@ struct Reply {
     std::string error;      // populated when ok==false
 };
 
-// Build a request string. cmd is e.g. "goal start".
+// Build a request string. cmd is e.g. "goal.start".
 std::string build(const std::string& cmd, const std::string& payload_json_inline);
 
 // Names of the commands we use.
 namespace cmd {
-    constexpr const char* kVersion     = "version";
-    constexpr const char* kOptionsSet  = "options set";
-    constexpr const char* kGoalStart   = "goal start";
-    constexpr const char* kTactic      = "tactic";
-    constexpr const char* kSave        = "save";
-    constexpr const char* kLoad        = "load";
-    constexpr const char* kLibAdd      = "library add";
-    constexpr const char* kExprSynth   = "expr synthesize";
+    constexpr const char* kOptionsSet  = "options.set";
+    constexpr const char* kOptionsPrint= "options.print";
+    constexpr const char* kGoalStart   = "goal.start";
+    constexpr const char* kGoalTactic  = "goal.tactic";
+    constexpr const char* kEnvAdd      = "env.add";
+    constexpr const char* kEnvSave     = "env.save";
+    constexpr const char* kEnvLoad     = "env.load";
+    constexpr const char* kExprEcho    = "expr.echo";
 }  // namespace cmd
 
 }  // namespace protocol

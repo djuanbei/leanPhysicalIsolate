@@ -4,6 +4,7 @@
 #include <vector>
 #include <memory>
 #include <optional>
+#include <mutex>
 
 namespace lpi {
 
@@ -103,6 +104,12 @@ private:
     int read_fd_  = -1;
     pid_t pid_    = -1;
     bool started_ = false;
+    // Serialise exchanges against this repl subprocess. The repl
+    // speaks a line-oriented protocol: a concurrent write from two
+    // threads will interleave bytes and the parser will see garbage
+    // (spec §9 demands kernel semantics — we must not corrupt the
+    // repl's input stream).
+    std::mutex exchange_mu_;
 };
 
 }  // namespace lpi
