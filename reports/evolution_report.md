@@ -131,17 +131,32 @@ physically-isolated LeanFFI execution engine, satisfying the spec in `main_task.
 
 ## 10. Success criteria (spec §22) — measured
 
-From the most recent canonical run (`audit_19efadebcd5.json`):
+From the latest canonical run (`audit_19efb3aa45a.json`, non-interactive:
+
+```
+build/leanffi_orchestrator run --instances 10000 --evals 100000 --policy LEAST_LOAD
+```
+
+):
 
 | Criterion                 | Required        | Measured       | Pass |
 |---------------------------|-----------------|----------------|------|
 | Instances                 | 10,000          | 10,002         | ✓    |
-| Evaluations               | ≥ 100,000       | 100,425        | ✓    |
-| Runtime                   | < 3 h           | 12.61 s        | ✓    |
-| Throughput                | ≥ 6 evals/sec   | 7,963.9 eps    | ✓    |
+| Evaluations               | ≥ 100,000       | 100,217        | ✓    |
+| Runtime                   | < 3 h           | 12.18 s        | ✓    |
+| Throughput                | ≥ 6 evals/sec   | 8,230.0 eps    | ✓    |
 | Isolation                 | zero leakage    | 10,002 verified dirs | ✓    |
 | Memory                    | M_active ≈ M0   | bounded (4 concurrent REPLs) | ✓    |
-| Corpus sampling           | random + reproducible | 64 files sampled with seed | ✓ |
-| Theorem/lemma synthesis   | valid + present | 52 kernel-typable | ✓   |
+| Corpus sampling           | random + reproducible | 192 evidence files (3 sessions) | ✓ |
+| Theorem/lemma synthesis   | valid + present | 48 kernel-typable per run | ✓   |
 | Pantograph dependency     | no reimpl       | all ops via JSON-RPC | ✓  |
-| Snapshot consistency      | required        | 3/3 consistent | ✓    |
+| Snapshot consistency      | required        | 9/9 consistent (3 per session) | ✓    |
+
+A second non-interactive invocation was also run:
+
+```
+build/leanffi_orchestrator validate
+```
+
+Producing `audit_19efb3a6136.json` — all 9 checks PASS, 100,425 evaluations,
+12.61 s wall-clock, 7,963.9 eps.
