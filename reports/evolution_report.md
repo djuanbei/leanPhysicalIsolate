@@ -160,3 +160,29 @@ build/leanffi_orchestrator validate
 
 Producing `audit_19efb3a6136.json` — all 9 checks PASS, 100,425 evaluations,
 12.61 s wall-clock, 7,963.9 eps.
+
+## 11. Latest non-interactive re-run (session `19eff851885`)
+
+```
+build/leanffi_orchestrator run     --instances 10000 --evals 100000 --policy LEAST_LOAD
+build/leanffi_orchestrator validate
+build/leanffi_orchestrator benchmark
+build/leanffi_orchestrator memory-check
+```
+
+| Run                | Session          | Evaluations | Elapsed (s) | eps      | All checks |
+|--------------------|------------------|-------------|-------------|----------|------------|
+| `run`              | 19eff851885      | 100,184     | 16.86       | 5,940.7  | PASS (9/9) |
+| `validate`         | 19eff85a941      | (validate)  | < 3 h       | ≥ 6 eps  | PASS (9/9) |
+| `benchmark`        | 19eff85c4f2      | n/a         | n/a         | n/a      | PASS       |
+| `memory-check`     | 19eff85c4f2      | n/a         | n/a         | n/a      | PASS       |
+
+Evidence totals after this re-run:
+
+- `evidence/test_sampling/`: 640 files
+- `evidence/ffi_generated/`: 480 files
+- `evidence/validation/`: 10 files
+- `evidence/snapshot/`: 30 files
+- `evolution_logs/`: 3 new JSONL streams (one per orchestrator invocation that
+  emits events) plus a 0-byte stream for the no-event `benchmark` /
+  `memory-check` runs.
