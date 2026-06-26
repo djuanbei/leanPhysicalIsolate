@@ -419,11 +419,18 @@ bool Orchestrator::run_pipeline() {
     Logger::instance().info("Phase 5: fork propagation");
     {
         int forks_ok = 0;
-        // pick the next free id
+        // Pick a fresh id beyond the prepared pool. Pool prep created instance
+        // dirs 0..pool_.size()-1, so start at pool_.size() to guarantee no
+        // collision with existing isolated filesystems.
         int next_id = static_cast<int>(pool_.size());
         for (auto& inst : pool_) {
             if (!inst->alive()) continue;
             for (int j = 0; j < 1 && forks_ok < 2; ++j) {
+                // Advance until we find an id whose directory doesn't already exist
+                while (dir_exists(cfg_.work_root + "/runtime/instance_" +
+                                  std::to_string(next_id))) {
+                    ++next_id;
+                }
                 if (inst->fork_into(next_id)) {
                     ++forks_ok;
                     ++next_id;
