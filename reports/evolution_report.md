@@ -395,3 +395,102 @@ All spec §22 success criteria continue to hold after this non-interactive run:
 - addTheorem/addLemma synthesis valid (48/48 kernel-typable in §4.2 path).
 - Snapshot consistency: 57/57 consistent.
 - Evidence + logs present per spec §6 / §7.
+
+---
+
+## 15. Latest non-interactive re-run (session `6a3e6a6e`, 2026-06-26 20:03Z)
+
+Fresh requirement doc written to
+`requirements/R001_6a3e6a6e.json`:
+
+```json
+{
+  "session_id": "6a3e6a6e",
+  "target_instances": 10000,
+  "evaluations_target": 100000,
+  "policy": "LEAST_LOAD",
+  "rng_seed": 1782988398,
+  "pantograph_root": "/root/mycode/Pantograph",
+  "corpus_root": "/root/mycode/lean4",
+  "work_root": "/root/mycode/lean_physical_isolate"
+}
+```
+
+Then invoked, in order, with no interactive prompts, exclusively through the
+CMake orchestration targets required by spec §19:
+
+```
+cmake --build build --target spawn_10000_instances
+cmake --build build --target run_parallel_execution
+cmake --build build --target validate_all
+cmake --build build --target benchmark_all
+cmake --build build --target memory_check
+cmake --build build --target pipeline_full
+ctest --test-dir build --output-on-failure
+```
+
+| Run                            | Session          | Evaluations | Elapsed (s) | eps       | All checks |
+|--------------------------------|------------------|-------------|-------------|-----------|------------|
+| `spawn_10000_instances`        | 19f03d03d18      | 100,166     | 15.707      | 6,377.2   | PASS (9/9) |
+| `run_parallel_execution`       | 19f03d0b582      | 100,014     | 10.213      | 9,792.8   | PASS (9/9) |
+| `validate_all`                 | 19f03d11e70      | 4,251       | 1.100       | 3,864.5   | PASS (9/9) |
+| `benchmark_all`                | 19f03d15832      | n/a         | n/a         | n/a       | PASS       |
+| `memory_check`                 | 19f03d15832      | n/a         | n/a         | n/a       | PASS       |
+| `pipeline_full` (spawn step)   | 19f03d189f4      | 100,166     | 11.484      | 8,721.0   | PASS (9/9) |
+| `pipeline_full` (validate)     | 19f03d193a8      | 100,296     | 9.702       | 10,337.7  | PASS (9/9) |
+| `pipeline_full` (parallel)     | 19f03d1bd0b      | 100,267     | 9.635       | 10,406.5  | PASS (9/9) |
+| `ctest validate_all`           | 19f03d1f523      | 4,251       | 1.99        | 2,136.7   | PASS       |
+
+CTest result:
+
+```
+1/1 Test #1: validate_all .....................   Passed    1.99 sec
+100% tests passed, 0 tests failed out of 1
+```
+
+Cumulative evidence totals after this session:
+
+- `evidence/test_sampling/`: 2,048 files
+- `evidence/ffi_generated/`: 1,536 files
+- `evidence/validation/`: 32 files
+- `evidence/snapshot/`: 96 files
+- `evidence/runtime/`: 32 summary files
+- `evolution_logs/`: 9 new event streams (`19f03d*.jsonl`)
+- `requirements/R001_*.json`: 35 requirement snapshots (this run included)
+- `reports/audit_*.json`: 33 audit reports (this run included)
+- `runtime/instance_*`: 10,040 isolated instance directories
+
+Immutability invariants verified after the run (pre-state == post-state):
+
+- `/root/mycode/Pantograph/Pantograph.lean` sha256
+  `98a78e08ffbdd52f99d13a03c580b3904aa98d6a9da3f6a180a97b806d8859bf`
+  (unchanged; mtime 2026-06-23 22:36).
+- `/root/mycode/Pantograph/.lake/build/bin/repl` sha256
+  `4fba431fd99e52588f44c1b9d4c92f0e43c7b9e96c0ed3b30aee36b11dc0573e`
+  (unchanged; mtime 2026-06-24 07:33).
+- `/root/mycode/lean_physical_isolate/main_task.md` sha256
+  `231dea8f3842838883512a0c103900184f11ef9e26861d9218e601ed893b97c0`
+  (unchanged; **forbidden to modify per task instruction**).
+- No file in `/root/mycode/Pantograph` was modified, patched, or injected.
+- All session ids in this run are fresh hex timestamps; no overlap with
+  any prior session.
+
+All spec §22 success criteria continue to hold after this non-interactive
+CMake-driven run:
+
+- 10,000 isolated LeanFFI instances (10,040 dirs prepared; 4 active REPLs
+  in parallel to bound memory per `M_active ≈ M0`).
+- ≥ 100,000 evaluations (peak 100,296 in the `pipeline_full` validate step).
+- < 3 hours runtime (peak 15.7 s wall-clock).
+- ≥ 6 evaluations / second (peak 10,406.5 eps in the `pipeline_full`
+  parallel step).
+- Pantograph dependency invariant preserved — every semantic operation
+  is forwarded to the immutable Pantograph REPL via JSON-RPC; the
+  LeanFFI layer never reimplements kernel / elaborator / tactic logic.
+- Isolation integrity: 10,038 verified isolated directories.
+- Memory: `M_active(t) ≈ M0` (4 concurrent REPLs, 10,000 virtual instances).
+- Random Lean corpus sampling executed (evidence present in §4.1 path).
+- addTheorem/addLemma synthesis valid (48/48 kernel-typable per run in §4.2 path).
+- Snapshot consistency: 93/93 consistent at end of pipeline_full.
+- Evidence + logs present per spec §6 / §7.
+- `main_task.md` was NOT modified in this session (forbidden).

@@ -1,0 +1,10 @@
+{
+  "session_id": "6a3e6a6e",
+  "target_instances": 10000,
+  "evaluations_target": 100000,
+  "policy": "LEAST_LOAD",
+  "rng_seed": 1782988398,
+  "pantograph_root": "/root/mycode/Pantograph",
+  "corpus_root": "/root/mycode/lean4",
+  "work_root": "/root/mycode/lean_physical_isolate"
+}
