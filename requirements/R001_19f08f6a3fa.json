@@ -1,0 +1,9 @@
+{
+  "corpus_root": "/root/mycode/lean4",
+  "evaluations_target": 100000,
+  "pantograph_root": "/root/mycode/Pantograph",
+  "policy": "LEAST_LOAD",
+  "rng_seed": 20260627,
+  "session_id": "19f08f6a3fa",
+  "target_instances": 10000
+}
