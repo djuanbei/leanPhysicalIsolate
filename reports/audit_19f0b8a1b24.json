@@ -1,0 +1,56 @@
+{
+  "active_instances": 4,
+  "all_passed": true,
+  "elapsed_seconds": 30.135,
+  "instance_pool_size": 10000,
+  "policy": "LEAST_LOAD",
+  "results": [
+    {
+      "detail": "active=4 expected=10000",
+      "name": "instance_count",
+      "passed": true
+    },
+    {
+      "detail": "evals=100087 elapsed_s=30.135000 eps=3321.287539",
+      "name": "evaluation_throughput",
+      "passed": true
+    },
+    {
+      "detail": "elapsed=30.135000s (<3h)",
+      "name": "runtime_budget",
+      "passed": true
+    },
+    {
+      "detail": "verified 10078 isolated instances",
+      "name": "isolation_integrity",
+      "passed": true
+    },
+    {
+      "detail": "test_sampling=3392 ffi_generated=2544 validation=50",
+      "name": "evidence_present",
+      "passed": true
+    },
+    {
+      "detail": "snapshots_total=153 consistent=153",
+      "name": "snapshots_consistent",
+      "passed": true
+    },
+    {
+      "detail": "Pantograph immutable base integrated via build cache",
+      "name": "pantograph_dependency",
+      "passed": true
+    },
+    {
+      "detail": "random Lean corpus sampling evidence present",
+      "name": "random_lean_file_executed",
+      "passed": true
+    },
+    {
+      "detail": "addTheorem/addLemma generation evidence present",
+      "name": "ffi_generation_valid",
+      "passed": true
+    }
+  ],
+  "session_id": "19f0b8a1b24",
+  "total_evaluations": 100087
+}

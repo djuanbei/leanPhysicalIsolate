@@ -1,0 +1,15 @@
+{
+  "corpus_root": "/root/mycode/lean4",
+  "evaluations_target": 100000,
+  "forbidden_modify": [
+    "/root/mycode/lean_physical_isolate/main_task.md",
+    "/root/mycode/Pantograph"
+  ],
+  "mode": "non-interactive",
+  "pantograph_root": "/root/mycode/Pantograph",
+  "policy": "LEAST_LOAD",
+  "rng_seed": 20260628,
+  "session_id": "19f0bd9d0e2",
+  "target_instances": 10000,
+  "work_root": "/root/mycode/lean_physical_isolate"
+}
