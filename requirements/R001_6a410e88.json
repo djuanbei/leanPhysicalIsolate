@@ -1,0 +1,16 @@
+{
+  "session_id": "6a410e88",
+  "target_instances": 10000,
+  "evaluations_target": 100000,
+  "policy": "LEAST_LOAD",
+  "rng_seed": 20260628,
+  "pantograph_root": "/root/mycode/Pantograph",
+  "corpus_root": "/root/mycode/lean4",
+  "work_root": "/root/mycode/lean_physical_isolate",
+  "mode": "non-interactive",
+  "forbidden_modify": [
+    "/root/mycode/lean_physical_isolate/main_task.md",
+    "/root/mycode/Pantograph"
+  ],
+  "issued_at_utc": "2026-06-28T12:07:36Z"
+}

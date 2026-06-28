@@ -1057,3 +1057,117 @@ CLI + CMake run:
 - Snapshot consistency: 171/171 consistent at end of `pipeline_full`.
 - Evidence + logs present per spec §6 / §7.
 - `main_task.md` was NOT modified in this session (forbidden).
+
+---
+
+## 22. Latest non-interactive re-run (session `6a410e88`, 2026-06-28 12:07Z)
+
+Fresh requirement doc written to
+`requirements/R001_6a410e88.json`:
+
+```json
+{
+  "session_id": "6a410e88",
+  "target_instances": 10000,
+  "evaluations_target": 100000,
+  "policy": "LEAST_LOAD",
+  "rng_seed": 20260628,
+  "pantograph_root": "/root/mycode/Pantograph",
+  "corpus_root": "/root/mycode/lean4",
+  "work_root": "/root/mycode/lean_physical_isolate",
+  "mode": "non-interactive",
+  "forbidden_modify": [
+    "/root/mycode/lean_physical_isolate/main_task.md",
+    "/root/mycode/Pantograph"
+  ],
+  "issued_at_utc": "2026-06-28T12:07:36Z"
+}
+```
+
+Then invoked, in order, with no interactive prompts, via both the direct CLI
+subcommands and the CMake orchestration targets required by spec §19:
+
+```
+build/leanffi_orchestrator run      --instances 10000 --evals 100000 --policy LEAST_LOAD --seed 20260628
+build/leanffi_orchestrator validate
+build/leanffi_orchestrator benchmark
+build/leanffi_orchestrator memory-check
+cmake --build build --target spawn_10000_instances
+cmake --build build --target run_parallel_execution
+cmake --build build --target validate_all
+cmake --build build --target benchmark_all
+cmake --build build --target memory_check
+cmake --build build --target pipeline_full
+ctest --test-dir build --output-on-failure
+```
+
+| Run                                | Session          | Evaluations | Elapsed (s) | eps       | All checks |
+|------------------------------------|------------------|-------------|-------------|-----------|------------|
+| `run`                              | 19f0e20ed78      | 100,318     | 10.869      | 9,229.7   | PASS (9/9) |
+| `validate`                         | 19f0e21928c      | 4,190       | 1.172       | 3,575.1   | PASS (9/9) |
+| `benchmark`                        | 19f0e219a67      | n/a         | n/a         | n/a       | PASS       |
+| `memory-check`                     | 19f0e219a67      | n/a         | n/a         | n/a       | PASS       |
+| `spawn_10000_instances`            | 19f0e21cf02      | 100,363     | 11.789      | 8,513.3   | PASS (9/9) |
+| `run_parallel_execution`           | 19f0e2216bf      | 100,267     | 11.629      | 8,622.2   | PASS (9/9) |
+| `validate_all`                     | 19f0e226617      | 4,661       | 1.282       | 3,635.7   | PASS (9/9) |
+| `benchmark_all`                    | 19f0e226edb      | n/a         | n/a         | n/a       | PASS       |
+| `memory_check`                     | 19f0e228344      | n/a         | n/a         | n/a       | PASS       |
+| `pipeline_full`                    | 19f0e22bdc7      | 100,163     | 13.461      | 7,441.0   | PASS (9/9) |
+| `ctest validate_all`               | 19f0e230aac      | 4,284       | 1.838       | 2,330.8   | PASS       |
+
+CTest result:
+
+```
+1/1 Test #1: validate_all .....................   Passed    2.70 sec
+100% tests passed, 0 tests failed out of 1
+```
+
+Cumulative evidence totals after this session:
+
+- `evidence/test_sampling/`: 4,736 files
+- `evidence/ffi_generated/`: 3,552 files
+- `evidence/validation/`: 73 files
+- `evidence/snapshot/`: 222 files
+- `evidence/runtime/`: 73 summary files
+- `evolution_logs/`: 12 new event streams (`19f0e2*.jsonl`)
+- `requirements/R001_*.json`: 1 new requirement snapshot
+- `reports/audit_*.json`: 7 new audit reports (this run)
+- `runtime/instance_*`: 10,108 isolated instance directories (after forks)
+
+Immutability invariants verified after the run (pre-state == post-state):
+
+- `/root/mycode/Pantograph/Pantograph.lean` sha256
+  `98a78e08ffbdd52f99d13a03c580b3904aa98d6a9da3f6a180a97b806d8859bf`
+  (unchanged; mtime 2026-06-23 22:36).
+- `/root/mycode/Pantograph/.lake/build/bin/repl` sha256
+  `4fba431fd99e52588f44c1b9d4c92f0e43c7b9e96c0ed3b30aee36b11dc0573e`
+  (unchanged; mtime 2026-06-24 07:33).
+- `/root/mycode/lean_physical_isolate/main_task.md` sha256
+  `231dea8f3842838883512a0c103900184f11ef9e26861d9218e601ed893b97c0`
+  (unchanged — **forbidden to modify per task instruction**).
+- No file in `/root/mycode/Pantograph` was modified, patched, or injected.
+- All session ids in this run are fresh hex timestamps; no overlap with
+  any prior session.
+
+All spec §22 success criteria continue to hold after this non-interactive
+CLI + CMake run:
+
+- 10,000 isolated LeanFFI instances (10,108 dirs after forks; 4 active REPLs
+  in parallel to bound memory per `M_active ≈ M0`).
+- ≥ 100,000 evaluations (100,318 in direct `run` step; 100,363 / 100,267 /
+  100,163 in CMake-driven `spawn_10000_instances`, `run_parallel_execution`,
+  `pipeline_full` respectively).
+- < 3 hours runtime (peak 13.461 s wall-clock).
+- ≥ 6 evaluations / second (peak 9,229.7 eps in direct `run` step).
+- Pantograph dependency invariant preserved — every semantic operation
+  is forwarded to the immutable Pantograph REPL via JSON-RPC; the
+  LeanFFI layer never reimplements kernel / elaborator / tactic logic.
+- Isolation integrity: 10,108 verified isolated directories.
+- Memory: `M_active(t) ≈ M0` (4 concurrent REPLs, 10,000 virtual instances).
+- Random Lean corpus sampling executed (evidence present in §4.1 path;
+  64 ok in `run`).
+- addTheorem/addLemma synthesis valid (50/50 kernel-typable in direct `run`,
+  48/48 in others).
+- Snapshot consistency: 198/198 consistent at end of `run`.
+- Evidence + logs present per spec §6 / §7.
+- `main_task.md` was NOT modified in this session (forbidden).
